@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import getTokenData from "../GetTokenData";
 import { Link } from "react-router-dom";
 import { Fragment } from "react";
+import { Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, Avatar, ListItemAvatar} from "@mui/material";
+import {Home, AdminPanelSettings, PersonAdd, PersonSearch, GroupAdd, Search, QueryStats, Help, Image} from "@mui/icons-material";
+
 
 const NavMenu = () => {
     const [show, setShow] = useState(true)
@@ -24,35 +27,92 @@ const NavMenu = () => {
     }, [])
 
     return (
-        show ? <div className="menu">
-            MENU XD
-            <br></br>
-            {name}<br></br>{surname}<br></br>{role}<br></br>
-            <ul>
-                <li>
-                    <Link to={"/"}>Home</Link>
-                </li>
-                <li>
-                    <Link to={"/addPatient"}>Add patient</Link>
-                </li>
-                <li>
-                    <Link to={"/searchPatient"}>Search patient</Link>
-                </li>
+        show ? 
+        <Box bgcolor="skyblue"
+                    flex={1}
+                    p={2}
+                    sx={{display:{xs: "none", sm: "block"}}}>
+           <List>                 
+            <ListItem>
+                <ListItemAvatar>
+                <Avatar>
+                    <AdminPanelSettings />
+                </Avatar>
+                </ListItemAvatar>
+                <ListItemText primary={name + " " + surname} secondary={role} />
+            </ListItem>
+            <Divider variant="inset" component="li" />
+            
+            
+                <ListItem disablePadding>
+                    <ListItemButton component="a" href="/">
+                        <ListItemIcon>
+                            <Home/>
+                        </ListItemIcon>
+                        <ListItemText primary="Homepage" />
+                    </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                    <ListItemButton component="a" href="/addPatient">
+                        <ListItemIcon>
+                            <PersonAdd/>
+                        </ListItemIcon>
+                        <ListItemText primary="Add patient" />
+                    </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                    <ListItemButton component="a" href="/searchPatient">
+                        <ListItemIcon>
+                            <PersonSearch/>
+                        </ListItemIcon>
+                        <ListItemText primary="Search patient" />
+                    </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                    <ListItemButton component="a" href="/analysis">
+                        <ListItemIcon>
+                            <QueryStats/>
+                        </ListItemIcon>
+                        <ListItemText primary="Analysis" />
+                    </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                    <ListItemButton component="a" href="/analysis">
+                        <ListItemIcon>
+                            <Help/>
+                        </ListItemIcon>
+                        <ListItemText primary="Help" />
+                    </ListItemButton>
+                </ListItem>
+                
                 {role == "Administrator" ?
                     <Fragment>
-                        <li>
-                            <Link to={"/searchUser"}>Search user</Link>
-                        </li>
-                        <li>
-                            <Link to={"/addUser"}>Add user</Link>
-                        </li>
+                        <ListItem disablePadding>
+                            <ListItemButton component="a" href="/addUser">
+                                <ListItemIcon>
+                                    <GroupAdd/>
+                                </ListItemIcon>
+                                <ListItemText primary="Add user" />
+                            </ListItemButton>
+                        </ListItem>
+                        <ListItem disablePadding>
+                            <ListItemButton component="a" href="/searchUser">
+                                <ListItemIcon>
+                                    <Search/>
+                                </ListItemIcon>
+                                <ListItemText primary="Search user" />
+                            </ListItemButton>
+                        </ListItem>
+                       
                     </Fragment> : null
                 }
-            </ul>
+            
+            </List>
+           
 
 
 
-        </div> : <div></div>
+        </Box> : <div></div>
     );
 }
 

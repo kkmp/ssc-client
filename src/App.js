@@ -9,6 +9,7 @@ import SearchUser from "./components/SearchUser"
 import PatientPanel from "./components/PatientPanel"
 import UserPanel from "./components/UserPanel"
 import AddUser from "./components/AddUser"
+import NavBar from "./components/NavBar/NavBar"
 import { ToastContainer } from "react-toastify"
 import './App.css';
 import { Fragment } from "react"
@@ -17,12 +18,22 @@ import NavMenu from "./components/NavMenu/NavMenu"
 import Unauthorized from "./components/Unauthorized"
 import ProtectedRoute from "./components/ProtectedRoute"
 import Analysis from "./components/Analysis"
-import {Box, Container} from  "@mui/material"
+import {Box, Container, Stack} from  "@mui/material"
+
+
 
 function App(props) {
   return (
+    
     <Fragment>
-      <NavMenu />
+      <NavBar />
+      
+      <Box>
+        <Stack direction="row">
+          <NavMenu />
+          
+        
+      
       <Routes>
         <Route path="/login" exact element={<Login />} />
         <Route path="/changePassword" exact element={<ChangePassword />} />
@@ -31,9 +42,7 @@ function App(props) {
 
         <Route path="/" exact element={
           <ProtectedRoute roles={["Administrator", "Lekarz", "Laborant"]} redirect="/login">
-            <Container sx={{backgroundColor:"blue"}}>
               <Home />
-            </Container>
             
           </ProtectedRoute>}>
         </Route>
@@ -82,7 +91,10 @@ function App(props) {
         </Route>
       </Routes>
       <ToastContainer />
+      </Stack>
+      </Box>
     </Fragment>
+ 
   );
 }
 
