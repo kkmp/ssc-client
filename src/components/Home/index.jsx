@@ -1,9 +1,10 @@
 import React, { useState, useEffect, Fragment } from "react";
 import request from "../Request";
-import jwt from "jwt-decode"
+import jwt from "jwt-decode";
 import Patient from "../Patient/Patient";
 import UserDetails from "../User/UserDetails";
 import ChangePasswordOnDemand from "./ChangePasswordOnDemand";
+import {Box, Container} from "@mui/material";
 
 export default function Home() {
     const [userData, setUserData] = useState([])
@@ -39,19 +40,22 @@ export default function Home() {
     }
 
     return (
-        <Fragment>
-            <div style={{ height: "50px" }}></div>
-            <div className="product-container">
-                Tymczasowe wyświetlanie:
-                <br></br>
-                Twoje dane:
-                <UserDetails data={userData} />
-                <button onClick={handleOnClick}>Zmień hasło</button>
-                <br></br>
-                Ostatnio dodani pacjenci:
-                {addedPatients.map((patient) => <Patient key={patient["id"]} data={patient} />)}
-                {showChangePassword ? <ChangePasswordOnDemand onClose={handleOnClick} /> : ""}
-            </div>
-        </Fragment>
+        <Container sx={{backgroundColor:"red"}}>
+            <Fragment>
+                <div style={{ height: "50px" }}></div>
+                <div className="product-container">
+                    Tymczasowe wyświetlanie:
+                    <br></br>
+                    Twoje dane:
+                    <UserDetails data={userData} />
+                    <button onClick={handleOnClick}>Zmień hasło</button>
+                    <br></br>
+                    Ostatnio dodani pacjenci:
+                    {addedPatients.map((patient) => <Patient key={patient["id"]} data={patient} />)}
+                    {showChangePassword ? <ChangePasswordOnDemand onClose={handleOnClick} /> : ""}
+                </div>
+            </Fragment>
+        </Container>
+        
     );
 };

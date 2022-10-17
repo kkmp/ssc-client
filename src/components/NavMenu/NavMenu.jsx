@@ -24,8 +24,8 @@ const NavMenu = () => {
     }, [])
 
     return (
-        show ? <div>
-            MENU
+        show ? <div className="menu">
+            MENU XD
             <br></br>
             {name}<br></br>{surname}<br></br>{role}<br></br>
             <ul>

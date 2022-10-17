@@ -17,6 +17,7 @@ import NavMenu from "./components/NavMenu/NavMenu"
 import Unauthorized from "./components/Unauthorized"
 import ProtectedRoute from "./components/ProtectedRoute"
 import Analysis from "./components/Analysis"
+import {Box, Container} from  "@mui/material"
 
 function App(props) {
   return (
@@ -30,7 +31,10 @@ function App(props) {
 
         <Route path="/" exact element={
           <ProtectedRoute roles={["Administrator", "Lekarz", "Laborant"]} redirect="/login">
-            <Home />
+            <Container sx={{backgroundColor:"blue"}}>
+              <Home />
+            </Container>
+            
           </ProtectedRoute>}>
         </Route>
 

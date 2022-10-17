@@ -1,14 +1,15 @@
 import React, { useState } from "react";
+import Error from "../Error";
 import './signin.css'
 import request from "../Request";
-import Errors from "../Errors";
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState(null);
+    const initialValue = [];
+    const [error, setError] = useState(initialValue);
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async e => {
         e.preventDefault();
         const url = '/api/Login/login'
         const data = {
@@ -20,7 +21,8 @@ export default function Login() {
             window.location = '/'
         }
         const errorCallback = (response) => {
-            setError(response.data)
+            var newErrorArr = Object.keys(response.data.errors).map((key) => response.data.errors[key].join(" "));
+            setError(newErrorArr)
         }
         await request({url: url, data: data, type: "POST"}, callback, errorCallback, false);
     };
@@ -31,7 +33,9 @@ export default function Login() {
                 <section className="login-logo mb-5 text-center">
                     <h1>Logowanie</h1>
                 </section>
-                {error != null ? <Errors data={error} /> : null}
+                <div>
+                    {error.map((err, idx) => <Error message={err} key={idx} />)}
+                </div>
                 <div className="col-4 offset-4">
                     <form onSubmit={handleSubmit}>
                         <div className="form-group pb-2">
@@ -46,7 +50,7 @@ export default function Login() {
                     </form>
                 </div>
                 <div className="text-center mt-1">
-                    <p>Nie pamiętam hasła <a className="text-decoration-none link-success fw-bold" href="changePassword">Zmień hasło!</a></p>
+                    <p>Nie pamiętam hasła <a className="text-decoration-none link-success fw-bold" href="register">Zmień hasło!</a></p>
                 </div>
             </div>
         </div>
