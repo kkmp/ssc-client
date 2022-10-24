@@ -3,7 +3,7 @@ import getTokenData from "../GetTokenData";
 import { Link } from "react-router-dom";
 import { Fragment } from "react";
 import { Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, Avatar, ListItemAvatar} from "@mui/material";
-import {Home, AdminPanelSettings, PersonAdd, PersonSearch, GroupAdd, Search, QueryStats, Help, Image} from "@mui/icons-material";
+import {Home, AdminPanelSettings, PersonAdd, PersonSearch, GroupAdd, Search, QueryStats, Help} from "@mui/icons-material";
 
 
 const NavMenu = () => {
@@ -85,7 +85,7 @@ const NavMenu = () => {
                     </ListItemButton>
                 </ListItem>
                 
-                {role == "Administrator" ?
+                {role === "Administrator" ?
                     <Fragment>
                         <ListItem disablePadding>
                             <ListItemButton component="a" href="/addUser">

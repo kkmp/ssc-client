@@ -34,7 +34,8 @@ export default function Login() {
                     <h1>Logowanie</h1>
                 </section>
                 <div>
-                    {error.map((err, idx) => <Error message={err} key={idx} />)}
+
+                    {error ? error.map((err, idx) => <Error message={err} key={idx} />): null}
                 </div>
                 <div className="col-4 offset-4">
                     <form onSubmit={handleSubmit}>

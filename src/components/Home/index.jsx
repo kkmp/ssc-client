@@ -40,9 +40,9 @@ export default function Home() {
     }
 
     return (
-            <Box bgcolor={"pink"} flex={3}>
+            <Box bgcolor={"pink"} flex={5}>
                 <Fragment>
-                    <div style={{ height: "50px" }}></div>
+                    
                     <div className="product-container">
                         Tymczasowe wyświetlanie:
                         <br></br>

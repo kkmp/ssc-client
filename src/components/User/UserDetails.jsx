@@ -1,12 +1,15 @@
 import { Fragment } from "react"
+import { Box } from "@mui/material";
 import User from "./User";
 
 const UserDetails = (user) => {
 
     return (
         <Fragment>
-            <User data={user.data} showButton={false} />
-            {user.data.date}
+            <Box p={3}>
+                <User data={user.data} showButton={false} />
+                {user.data.date}
+            </Box>
         </Fragment>
     );
 }

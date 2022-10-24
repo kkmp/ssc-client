@@ -32,8 +32,6 @@ function App(props) {
         <Stack direction="row">
           <NavMenu />
           
-        
-      
       <Routes>
         <Route path="/login" exact element={<Login />} />
         <Route path="/changePassword" exact element={<ChangePassword />} />

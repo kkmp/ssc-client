@@ -1,6 +1,7 @@
 import { Fragment } from "react"
 import { Shield, Clipboard2Pulse, Eyedropper } from "react-bootstrap-icons";
 import './UserAvatar.css'
+import {Stack} from "@mui/material";
 
 const UserAvatar = (user) => {
     const showRoleIcon = () => {
