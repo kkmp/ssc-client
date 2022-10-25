@@ -3,8 +3,8 @@ import getTokenData from "../GetTokenData";
 import { Link } from "react-router-dom";
 import { Fragment } from "react";
 import { Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, Avatar, ListItemAvatar} from "@mui/material";
-import {Home, AdminPanelSettings, PersonAdd, PersonSearch, GroupAdd, Search, QueryStats, Help} from "@mui/icons-material";
-
+import {Home, AdminPanelSettings, PersonAdd, PersonSearch, GroupAdd, Search, QueryStats, Help, Science, HealthAndSafety} from "@mui/icons-material";
+import './style.css'
 
 const NavMenu = () => {
     const [show, setShow] = useState(true)
@@ -28,16 +28,29 @@ const NavMenu = () => {
 
     return (
         show ? 
-        <Box bgcolor="skyblue"
+        <Box className="navMenu" bgcolor="skyblue"
                     flex={1}
                     p={2}
-                    sx={{display:{xs: "none", sm: "block"}}}>
+                    sx={{display:{xs: "none", sm: "block"}}}
+                    height="800px"
+                    
+                    >
            <List>                 
             <ListItem>
                 <ListItemAvatar>
-                <Avatar>
+                
+                    {role === "Administrator" ?
+                    <Avatar>
                     <AdminPanelSettings />
-                </Avatar>
+                    </Avatar> : role === "Laborant" ?
+                    <Avatar>
+                    <Science />
+                    </Avatar> : role === "Lekarz" ?
+                    <Avatar>
+                    <HealthAndSafety />
+                    </Avatar>: null
+                    }
+                
                 </ListItemAvatar>
                 <ListItemText primary={name + " " + surname} secondary={role} />
             </ListItem>
@@ -112,7 +125,7 @@ const NavMenu = () => {
 
 
 
-        </Box> : <div></div>
+        </Box> : null
     );
 }
 

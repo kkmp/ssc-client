@@ -1,5 +1,5 @@
 import { Fragment } from "react"
-import { Stack, Avatar, Grid, Paper, Box } from "@mui/material"; 
+import { Stack, Avatar, Grid, Paper, Box, Card, Container} from "@mui/material"; 
 import {Science, AdminPanelSettings, HealthAndSafety} from "@mui/icons-material";
 import { styled } from '@mui/material/styles';
 
@@ -39,32 +39,32 @@ const User = (user) => {
 
     return (
         <Fragment>
-            <Stack direction="row">
-                <Box sx={{width:'auto'}}>
-                    <Grid container spacing={1}>
-                        <Grid xs={4}>
-                            <Item >
-                                <Avatar sx={{ width: 56, height: 56 }}>{showRoleIcon()}</Avatar>
+                <Container>
+                <Stack direction={'row'}>
+                    <Item>
+                        <Avatar sx={{ width: 56, height: 56 }}>{showRoleIcon()}</Avatar>
+                    </Item>
+                    <Item>
+                        <p>Imię: {user.data.name}</p>
+                        <p>Nazwisko: {user.data.surname}</p>
+                    </Item>
+                    <Item>
+                        {user.data.email} 
+                        {user.data.phone}
+                    </Item>
+                    <Item>
+                    {showActivity()}
+                    </Item>
+                    
+           
+                    {user.showButton ? <button onClick={() => handleAction(user.data.id)}>Szczegóły</button> : ""}
 
-                            </Item>
-                        </Grid>
-                        <Grid xs={6}>
-                            <Item>
-                                <p>Imię: {user.data.name}</p>
-                            </Item>
-                            
-                        </Grid>
-                        <Grid xs={6}>
-                            <Item>
-                                <p>Nazwisko: {user.data.surname}</p>
-                            </Item>
-                        </Grid>
-                    </Grid>
-                  {user.data.email} {user.data.phone} {showActivity()}
-                </Box>
+                  
                 
-                {user.showButton ? <button onClick={() => handleAction(user.data.id)}>Szczegóły</button> : ""}
             </Stack>
+            </Container>
+            
+            
         </Fragment>
     );
 }

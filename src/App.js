@@ -19,6 +19,7 @@ import Unauthorized from "./components/Unauthorized"
 import ProtectedRoute from "./components/ProtectedRoute"
 import Analysis from "./components/Analysis"
 import {Box, Container, Stack} from  "@mui/material"
+import Footer from "./components/Footer/Footer"
 
 
 
@@ -26,72 +27,129 @@ function App(props) {
   return (
     
     <Fragment>
-      <NavBar />
       
-      <Box>
-        <Stack direction="row">
-          <NavMenu />
+      
+      
+     
           
       <Routes>
-        <Route path="/login" exact element={<Login />} />
+        <Route path="/login" exact element={<Login />}/>
         <Route path="/changePassword" exact element={<ChangePassword />} />
         <Route path="/changePassword/useCode/:code" exact element={<UseCode />} />
         <Route path="/unauthorized" exact element={<Unauthorized />} />
 
         <Route path="/" exact element={
           <ProtectedRoute roles={["Administrator", "Lekarz", "Laborant"]} redirect="/login">
-              <Home />
             
+             <Box>
+                <NavBar />
+                
+                <Stack direction="row">
+                  <NavMenu />
+                  <Home />
+                </Stack>
+                
+              </Box>
+              
           </ProtectedRoute>}>
         </Route>
 
         <Route path="/addPatient" exact element={
           <ProtectedRoute roles={["Administrator", "Lekarz", "Laborant"]}>
-            <AddPatient />
+            <Box>
+                <NavBar />
+                <Stack direction="row">
+                  <NavMenu />
+                  <AddPatient />
+                </Stack>
+              </Box>
+            
           </ProtectedRoute>}>
         </Route>
 
         <Route path="/searchPatient" exact element={
           <ProtectedRoute roles={["Administrator", "Lekarz", "Laborant"]}>
-            <SearchPatient />
+            <Box>
+                <NavBar />
+                <Stack direction="row">
+                  <NavMenu />
+                  <SearchPatient />
+                </Stack>
+              </Box>
+            
           </ProtectedRoute>}>
         </Route>
 
         <Route path="/patient/:id" exact element={
           <ProtectedRoute roles={["Administrator", "Lekarz", "Laborant"]}>
-            <PatientPanel />
+            <Box>
+                <NavBar />
+                <Stack direction="row">
+                  <NavMenu />
+                  <PatientPanel />
+                </Stack>
+              </Box>
+            
           </ProtectedRoute>}>
         </Route>
 
 
         <Route path="/searchUser" exact element={
           <ProtectedRoute roles={["Administrator"]}>
-            <SearchUser />
+            <Box>
+                <NavBar />
+                <Stack direction="row">
+                  <NavMenu />
+                  <SearchUser />
+                </Stack>
+              </Box>
+            
           </ProtectedRoute>}>
         </Route>
 
         <Route path="/user/:id" exact element={
           <ProtectedRoute roles={["Administrator"]}>
-            <UserPanel />
+            <Box>
+                <NavBar />
+                <Stack direction="row">
+                  <NavMenu />
+                  <UserPanel />
+                </Stack>
+              </Box>
+            
           </ProtectedRoute>}>
         </Route>
 
         <Route path="/addUser" exact element={
           <ProtectedRoute roles={["Administrator"]}>
-            <AddUser />
+            <Box>
+                <NavBar />
+                <Stack direction="row">
+                  <NavMenu />
+                  <AddUser />
+                </Stack>
+              </Box>
+            
           </ProtectedRoute>}>
         </Route>
 
         <Route path="/analysis" exact element={
           <ProtectedRoute roles={["Administrator", "Lekarz"]}>
-            <Analysis />
+            <Box>
+                <NavBar />
+                <Stack direction="row">
+                  <NavMenu />
+                  <Analysis />
+                </Stack>
+              </Box>
+            
           </ProtectedRoute>}>
         </Route>
       </Routes>
       <ToastContainer />
-      </Stack>
-      </Box>
+      
     </Fragment>
+    
  
   );
 }

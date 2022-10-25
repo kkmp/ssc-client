@@ -4,7 +4,9 @@ import jwt from "jwt-decode";
 import Patient from "../Patient/Patient";
 import UserDetails from "../User/UserDetails";
 import ChangePasswordOnDemand from "./ChangePasswordOnDemand";
-import {Box, Container} from "@mui/material";
+import {Box, Container, Typography} from "@mui/material";
+import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Paper } from "@mui/material";
+
 
 export default function Home() {
     const [userData, setUserData] = useState([])
@@ -40,22 +42,43 @@ export default function Home() {
     }
 
     return (
+        
             <Box bgcolor={"pink"} flex={5}>
                 <Fragment>
-                    
-                    <div className="product-container">
-                        Tymczasowe wyświetlanie:
-                        <br></br>
-                        Twoje dane:
+                    <Typography variant="h6">Mój profil</Typography>
+
                         <UserDetails data={userData} />
                         <button onClick={handleOnClick}>Zmień hasło</button>
                         <br></br>
-                        Ostatnio dodani pacjenci:
-                        {addedPatients.map((patient) => <Patient key={patient["id"]} data={patient} />)}
                         {showChangePassword ? <ChangePasswordOnDemand onClose={handleOnClick} /> : ""}
-                    </div>
+                        
+                        <Typography variant="h6">Ostatnio dodani pacjenci</Typography>
+                        <br></br>
+                        <TableContainer sx={{"padding": '10px 10px 10px 10px'}} component={Paper}>
+                            <Table aria-label="simple table" sx={{ '*': {textAlign: 'center'}}}>
+                                <TableHead sx={{ 'th': {fontWeight: 'bold'}}}>
+                                    <TableCell>PŁEĆ</TableCell>
+                                    <TableCell>IMIĘ</TableCell>
+                                    <TableCell>NAZWISKO</TableCell>
+                                    <TableCell>PESEL</TableCell>
+                                    <TableCell>DATA URODZENIA</TableCell>
+                                    <TableCell>AKCJA</TableCell>
+
+                                </TableHead>
+                                <TableBody>
+                                    
+                                        {addedPatients.map((patient) =>
+                                            <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0} }}>
+                                                <Patient key={patient["id"]} data={patient} />
+                                            </TableRow>
+                                        )}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                    
             </Fragment>
         </Box>
+ 
             
        
         
