@@ -41,7 +41,7 @@ const UserPanel = () => {
         } else {
             activity = "activate"
         }
-        const url = '/api/User/changeActivity/' + activity;
+        const url = '/api/User/changeActivity/' + activity + "/" + id;
         const newData = {
             "id": id
         }

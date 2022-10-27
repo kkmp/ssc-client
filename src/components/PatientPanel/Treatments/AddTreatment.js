@@ -2,14 +2,12 @@ import React, { Fragment, useState, useEffect } from "react";
 import { toast } from 'react-toastify';
 import request from "../../Request";
 import Errors from "../../Errors";
-import dateService from "../../DateService";
 import Select from "react-select";
 import getDataSelect from "../../../data-control/getDataSelect";
 
-const EditTreatment = (treatment) => {
+const AddTreatment = (props) => {
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
-    const [isCovid, setIsCovid] = useState("");
     const [treatmentStatus, setTreatmentStatus] = useState("");
     const [treatmentStatusOptions, setTreatmentStatusOptions] = useState("");
     const [error, setError] = useState(null);
@@ -17,21 +15,13 @@ const EditTreatment = (treatment) => {
     const isCovidOptions = [
         { value: null, label: "-" },
         { value: true, label: "Stwierdzono COVID" },
-        { value: false, label: "Nie stwierdzono COVID" },
+        { value: false, label: "Nie stwierdzono COVID" }
     ]
+
+    const [isCovid, setIsCovid] = useState(isCovidOptions[0]);
+
     useEffect(() => {
         const handleChange = () => {
-            setStartDate(dateService(treatment.data.startDate))
-            setEndDate(dateService(treatment.data.endDate))
-            setTreatmentStatus({ value: treatment.data.treatmentStatusId, label: treatment.data.treatmentStatus })
-            if (treatment.data.isCovid !== null) {
-                var resultSearch = isCovidOptions.filter(item => item.value === treatment.data.isCovid)
-                setIsCovid(resultSearch[0])
-            }
-            else {
-                setIsCovid(isCovidOptions[0])
-            }
-
             const urlTreatmentStatus = '/api/Data/getTreatmentStatuses'
             getDataSelect(urlTreatmentStatus).then((result) => {
                 setTreatmentStatusOptions(result)
@@ -42,10 +32,10 @@ const EditTreatment = (treatment) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const url = '/api/Treatment/editTreatment'
+        const url = '/api/Treatment/addTreatment'
         var data = {
-            "id": treatment.id,
             "startDate": startDate,
+            "patientId": props.id.id,
             "treatmentStatusId": treatmentStatus.value
         }
 
@@ -57,15 +47,20 @@ const EditTreatment = (treatment) => {
             data.isCovid = isCovid.value
         } 
 
+        if (!treatmentStatus) {
+            setError({ errors: { message: ["Aby zapisać, należy wybrać status leczenia"] } })
+            return
+        }
+
         const callback = () => {
-            treatment.onSubmit()
+            props.onSubmit()
             toast.success("Zapisano zmiany!", { position: toast.POSITION.BOTTOM_RIGHT });
             setError(null)
         }
         const errorCallback = (response) => {
             setError(response.data)
         }
-        await request({ url: url, data: data, type: "PUT" }, callback, errorCallback);
+        await request({ url: url, data: data, type: "POST" }, callback, errorCallback);
     };
 
     return (
@@ -73,12 +68,16 @@ const EditTreatment = (treatment) => {
             {error != null ? <Errors data={error} /> : null}
             <form onSubmit={handleSubmit} className="mt-5">
                 <h3>Edytuj powikłanie</h3>
+                <label>Data rozpoczęcia leczenia:</label>
                 <input type="datetime-local" name="startDate" value={startDate} onChange={({ target }) => setStartDate(target.value)} required />
+                <label>Data zakończenia leczenia:</label>
                 <input type="datetime-local" name="endDate" value={endDate} onChange={({ target }) => setEndDate(target.value)} />
+                <label>Stwierdzenie zachorowania na COVID:</label>
                 <Select required
                     value={isCovid}
                     onChange={setIsCovid}
                     options={isCovidOptions} />
+                <label>Status leczenia:</label>
                 {treatmentStatusOptions ? <Select required
                     value={treatmentStatus}
                     onChange={setTreatmentStatus}
@@ -90,4 +89,4 @@ const EditTreatment = (treatment) => {
     );
 }
 
-export default EditTreatment
+export default AddTreatment

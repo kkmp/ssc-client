@@ -6,12 +6,14 @@ import TreatmentDiseaseCourseDetails from "./TreatmentDiseaseCourseDetails";
 import Popup from "../../Popup";
 import Paginate from "../../Paginate";
 import getTokenData from "../../GetTokenData";
+import AddTreatmentDiseaseCourse from "./AddTreatmentDiseaseCourse";
 
 const TreatmentDiseaseCourses = (id) => {
     const [data, setData] = useState(null)
     const [error, setError] = useState(null);
     const [pageNumber, setPageNumber] = useState(0)
     const [buttonPopup, setButtonPopup] = useState(false)
+    const [buttonAddPopup, setButtonAddPopup] = useState(false)
     const [selectedTestData, setSelectedTestData] = useState(null)
 
     useEffect(() => {
@@ -50,6 +52,8 @@ const TreatmentDiseaseCourses = (id) => {
         error != null ? <Errors data={error} /> :
             <Fragment>
                 Powikłania:
+                <Popup component={<AddTreatmentDiseaseCourse onSubmit={handleChange} id={id} />} trigger={buttonAddPopup} setTrigger={setButtonAddPopup} />
+                <button onClick={() => setButtonAddPopup(true)}>Dodaj nowe powikłanie</button>
                 {data != null ?
                     <Paginate pageNumberChanged={pageNumberChanged} pageNumber={pageNumber} data={data.map((treatmentDiseaseCourse) => <TreatmentDiseaseCourse key={treatmentDiseaseCourse.id} data={treatmentDiseaseCourse} onClick={onClick} />)} />
                     : null}

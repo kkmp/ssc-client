@@ -6,12 +6,14 @@ import Paginate from "../../Paginate";
 import Popup from "../../Popup";
 import TreatmentDetails from "./TreatmentDetails";
 import getTokenData from "../../GetTokenData";
+import AddTreatment from "./AddTreatment";
 
 const Treatments = (id) => {
     const [data, setData] = useState(null)
     const [error, setError] = useState(null);
     const [pageNumber, setPageNumber] = useState(0)
     const [buttonPopup, setButtonPopup] = useState(false)
+    const [buttonAddPopup, setButtonAddPopup] = useState(false)
     const [selectedTestData, setSelectedTestData] = useState(null)
 
     useEffect(() => {
@@ -50,6 +52,8 @@ const Treatments = (id) => {
         error != null ? <Errors data={error} /> :
             <Fragment>
                 Leczenie:
+                <Popup component={<AddTreatment onSubmit={handleChange} id={id} />} trigger={buttonAddPopup} setTrigger={setButtonAddPopup} />
+                <button onClick={() => setButtonAddPopup(true)}>Dodaj nowe leczenie</button>
                 {data != null ?
                     <Paginate pageNumberChanged={pageNumberChanged} pageNumber={pageNumber} data={data.map((treatment) => <Treatment key={treatment.id} data={treatment} onClick={onClick} />)} />
                     : null}
