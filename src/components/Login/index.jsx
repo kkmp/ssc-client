@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Error from "../Error";
 import './signin.css'
 import request from "../Request";
+import { Container } from "@mui/system";
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -28,6 +29,7 @@ export default function Login() {
     };
     
     return (
+    <Container>
         <div className="container pt-5 mt-5">
             <div className="row">
                 <section className="login-logo mb-5 text-center">
@@ -51,9 +53,10 @@ export default function Login() {
                     </form>
                 </div>
                 <div className="text-center mt-1">
-                    <p>Nie pamiętam hasła <a className="text-decoration-none link-success fw-bold" href="register">Zmień hasło!</a></p>
+                    <p>Nie pamiętam hasła <a className="text-decoration-none link-success fw-bold" href="/ChangePassword">Zmień hasło!</a></p>
                 </div>
             </div>
         </div>
+    </Container>
     );
 };

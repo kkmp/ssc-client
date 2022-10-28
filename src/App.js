@@ -27,10 +27,6 @@ function App(props) {
   return (
     
     <Fragment>
-      
-      
-      
-     
           
       <Routes>
         <Route path="/login" exact element={<Login />}/>
@@ -41,15 +37,19 @@ function App(props) {
         <Route path="/" exact element={
           <ProtectedRoute roles={["Administrator", "Lekarz", "Laborant"]} redirect="/login">
             
-             <Box>
+             <Box bgcolor={'azure'}>
                 <NavBar />
                 
                 <Stack direction="row">
                   <NavMenu />
                   <Home />
                 </Stack>
+                <Footer>
+                  
+                </Footer>
                 
               </Box>
+              
               
           </ProtectedRoute>}>
         </Route>

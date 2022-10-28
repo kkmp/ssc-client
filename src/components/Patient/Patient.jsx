@@ -1,6 +1,6 @@
 import { Fragment } from "react"
-import { Female, Male } from "@mui/icons-material";
-import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Paper, Button } from "@mui/material";
+import { Woman, Man } from "@mui/icons-material";
+import { TableCell, Paper, Button, Avatar } from "@mui/material";
 
 const Patient = (patient) => {
     const handleAction = (id) => {
@@ -9,7 +9,7 @@ const Patient = (patient) => {
 
     return (
         <Fragment>
-            <TableCell>{patient.data.sex === 'F' ? <Female /> : <Male />}</TableCell>
+            <TableCell><Avatar>{patient.data.sex === 'F' ? <Woman /> : <Man />}</Avatar></TableCell>
             <TableCell>{patient.data.name}</TableCell>
             <TableCell>{patient.data.surname}</TableCell>
             <TableCell>{patient.data.pesel}</TableCell>

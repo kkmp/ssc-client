@@ -8,7 +8,7 @@ const UserDetails = (user) => {
         <Fragment>
             <Box p={3}>
             <User data={user.data} showButton={false} />
-                {user.data.date} {/*przeksztalcic w jeden komponent */}
+             {/*przeksztalcic w jeden komponent */}
             </Box>
         </Fragment>
     );

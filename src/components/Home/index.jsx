@@ -3,15 +3,15 @@ import request from "../Request";
 import jwt from "jwt-decode";
 import Patient from "../Patient/Patient";
 import UserDetails from "../User/UserDetails";
-import ChangePasswordOnDemand from "./ChangePasswordOnDemand";
+
 import {Box, Container, Typography} from "@mui/material";
-import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Paper } from "@mui/material";
+import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Paper, Card } from "@mui/material";
+import { People } from "@mui/icons-material";
 
 
 export default function Home() {
     const [userData, setUserData] = useState([])
     const [addedPatients, setAddedPatients] = useState([])
-    const [showChangePassword, setShowChangePassword] = useState(false)
 
     useEffect(() => {
         const handleChange = async () => {
@@ -36,46 +36,42 @@ export default function Home() {
         handleChange()
     }, []);
 
-    const handleOnClick = async (e) => {
-        e.preventDefault()
-        setShowChangePassword(!showChangePassword)
-    }
-
+    
     return (
         
-            <Box bgcolor={"pink"} flex={5}>
+            <Box bgcolor={'azure'} flex={5}>
                 <Fragment>
-                    <Typography variant="h6">Mój profil</Typography>
 
                         <UserDetails data={userData} />
-                        <button onClick={handleOnClick}>Zmień hasło</button>
+                        {/*<button onClick={handleOnClick}>Zmień hasło</button>*/}
                         <br></br>
-                        {showChangePassword ? <ChangePasswordOnDemand onClose={handleOnClick} /> : ""}
                         
-                        <Typography variant="h6">Ostatnio dodani pacjenci</Typography>
-                        <br></br>
-                        <TableContainer sx={{"padding": '10px 10px 10px 10px'}} component={Paper}>
-                            <Table aria-label="simple table" sx={{ '*': {textAlign: 'center'}}}>
-                                <TableHead sx={{ 'th': {fontWeight: 'bold'}}}>
-                                    <TableCell>PŁEĆ</TableCell>
-                                    <TableCell>IMIĘ</TableCell>
-                                    <TableCell>NAZWISKO</TableCell>
-                                    <TableCell>PESEL</TableCell>
-                                    <TableCell>DATA URODZENIA</TableCell>
-                                    <TableCell>AKCJA</TableCell>
+                        <Container>
+                            <Typography variant="h6" marginBottom={"20px"}><People/> Ostatnio dodani pacjenci</Typography>
+                            <TableContainer sx={{padding: '10px 10px 10px 10px', borderRadius: '16px', boxShadow: "1px 0px 21px 4px rgba(66, 68, 90, 1)"}} component={Paper} >
+                                <Table aria-label="simple table">
+                                    <TableHead sx={{ 'th': {fontWeight: 'bold'}}}>
+                                        <TableCell>PŁEĆ</TableCell>
+                                        <TableCell>IMIĘ</TableCell>
+                                        <TableCell>NAZWISKO</TableCell>
+                                        <TableCell>PESEL</TableCell>
+                                        <TableCell>DATA URODZENIA</TableCell>
+                                        <TableCell>AKCJA</TableCell>
 
-                                </TableHead>
-                                <TableBody>
-                                    
-                                        {addedPatients.map((patient) =>
-                                            <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0} }}>
-                                                <Patient key={patient["id"]} data={patient} />
-                                            </TableRow>
-                                        )}
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
+                                    </TableHead>
+                                    <TableBody>
+                                        
+                                            {addedPatients.map((patient) =>
+                                                <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0} }}>
+                                                    <Patient key={patient["id"]} data={patient} />
+                                                </TableRow>
+                                            )}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
                     
+                        </Container>
+                        
             </Fragment>
         </Box>
  

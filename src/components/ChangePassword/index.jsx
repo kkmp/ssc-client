@@ -1,7 +1,9 @@
 import React from "react";
 import { useState, Fragment } from "react";
 import request from "../Request";
-import Errors from "../Errors";
+import Errors from "../Errors"
+import Error from "../Error";
+import { Typography, Container } from "@mui/material";
 
 const ChangePassword = () => {
     const [email, setEmail] = useState("");
@@ -23,16 +25,36 @@ const ChangePassword = () => {
     }
 
     return (
-        <Fragment>
+        <Container>
             {error != null ? <Errors data={error} /> : null}
-            <h1>Zmiana hasła </h1>
-            Podaj adres email powiązany z Twoim kontem, a pomożemy Ci zmienić hasło.
-            <br></br>
-            <form onSubmit={handleSubmit}>
-                <input type="email" name="email" value={email} onChange={({ target }) => setEmail(target.value)} />
-                <button type="submit">Wyślij dalsze instrukcje</button>
-            </form>
-        </Fragment>
+
+            <div className="container pt-5 mt-5">
+            <div className="row">
+                
+                <section className="login-logo mb-5 text-center">
+                    <h1>Zmiana hasła</h1>
+                </section>
+                <div>
+                    {error ? error.map((err, idx) => <Error message={err} key={idx} />): null}
+                </div>
+                <div className="col-6 offset-3">
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-group pb-2">
+                            {/*Adres email*/}
+                            <input type="email" name="email" className="form-control" placeholder="Email" value={email} onChange={({ target }) => setEmail(target.value)} required/>
+                        </div>
+                        <button type="submit" id="signin" className="btn btn-primary w-100 my-3 py-2">Wyślij Email</button>
+                        
+                    </form>
+                    <div className="text-center mt-1">
+                            <p>Powrót do logowania <a className="text-decoration-none link-success fw-bold" href="/Login">Wróć</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        </Container>
+        
     );
 };
 
