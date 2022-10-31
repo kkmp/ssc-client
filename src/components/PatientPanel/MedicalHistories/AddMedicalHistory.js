@@ -2,6 +2,7 @@ import React, { Fragment, useState } from "react";
 import { toast } from 'react-toastify';
 import request from "../../Request";
 import Errors from "../../Errors";
+import RequiredComponent from "../../RequiredComponent";
 
 const AddMedicalHistory = (props) => {
     const [date, setDate] = useState("");
@@ -11,7 +12,6 @@ const AddMedicalHistory = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const url = '/api/MedicalHistory/addMedicalHistory'
-        console.log(props.id)
         const data = {
             "date": date,
             "description": description,
@@ -32,12 +32,25 @@ const AddMedicalHistory = (props) => {
         <Fragment>
             {error != null ? <Errors data={error} /> : null}
             <form onSubmit={handleSubmit}>
-                <h3>Dodaj historię choroby</h3>
-                <label>Data wpisu: </label>
-                <input type="datetime-local" name="date" value={date} onChange={({ target }) => setDate(target.value)} required />
-                <label>Opis: </label>
-                <input type="text" name="description" value={description} onChange={({ target }) => setDescription(target.value)} required />
-                <button type="submit" className="btn btn-primary btn-lg w-100">Dodaj wpis</button>
+                <div className="pb-3 pt-3">
+                    <h2>Nowy wpis do historii choroby</h2>
+                </div>
+
+                <div className="form-outline mb-4">
+                    <label className="form-label" htmlFor="date">Data wpisu</label>
+                    <RequiredComponent />
+                    <input type="datetime-local" id="date" name="date" value={date} onChange={({ target }) => setDate(target.value)} required className="form-control" />
+                </div>
+
+                <div className="form-outline mb-4">
+                    <label className="form-label" htmlFor="description">Opis</label>
+                    <RequiredComponent />
+                    <textarea id="description" name="description" value={description} onChange={({ target }) => setDescription(target.value)} required className="form-control" rows="3" placeholder="Dodaj opis" />
+                </div>
+
+                <div className="text-center">
+                    <button type="submit" className="btn btn-primary btn-block">Dodaj wpis</button>
+                </div>
             </form>
         </Fragment>
     );
