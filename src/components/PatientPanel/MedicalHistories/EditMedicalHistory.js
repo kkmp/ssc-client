@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import request from "../../Request";
 import Errors from "../../Errors";
 import dateService from "../../DateService";
+import RequiredComponent from "../../RequiredComponent";
 
 const EditMedicalHistory = (medicalHistory) => {
     const [date, setDate] = useState("");
@@ -39,11 +40,26 @@ const EditMedicalHistory = (medicalHistory) => {
     return (
         <Fragment>
             {error != null ? <Errors data={error} /> : null}
-            <form onSubmit={handleSubmit} className="mt-5">
-                <h3>Edytuj historię choroby</h3>
-                <input type="datetime-local" name="date" value={date} onChange={({ target }) => setDate(target.value)} required />
-                <input type="text" name="description" value={description} onChange={({ target }) => setDescription(target.value)} required />
-                <button type="submit" className="btn btn-primary btn-lg w-100">Zapisz zmiany</button>
+            <form onSubmit={handleSubmit}>
+                <div className="pb-3 pt-3">
+                    <h2>Edytuj wpis do historii choroby</h2>
+                </div>
+
+                <div className="form-outline mb-4">
+                    <label className="form-label" htmlFor="date">Data wpisu</label>
+                    <RequiredComponent />
+                    <input type="datetime-local" id="date" name="date" value={date} onChange={({ target }) => setDate(target.value)} required className="form-control" />
+                </div>
+
+                <div className="form-outline mb-4">
+                    <label className="form-label" htmlFor="description">Opis</label>
+                    <RequiredComponent />
+                    <textarea id="description" name="description" value={description} onChange={({ target }) => setDescription(target.value)} required className="form-control" rows="3" placeholder="Dodaj opis" />
+                </div>
+
+                <div className="text-center">
+                    <button type="submit" className="btn btn-primary btn-block">Zapisz zmiany</button>
+                </div>
             </form>
         </Fragment>
     );

@@ -5,6 +5,8 @@ import Errors from "../../Errors";
 import dateService from "../../DateService";
 import Select from "react-select";
 import getDataSelect from "../../../data-control/getDataSelect";
+import RequiredComponent from "../../RequiredComponent";
+import LoadingComponent from "../../LoadingComponent";
 
 const EditTreatmentDiseaseCourse = (treatmentDiseaseCourse) => {
     const [date, setDate] = useState("");
@@ -50,16 +52,36 @@ const EditTreatmentDiseaseCourse = (treatmentDiseaseCourse) => {
     return (
         <Fragment>
             {error != null ? <Errors data={error} /> : null}
-            <form onSubmit={handleSubmit} className="mt-5">
-                <h3>Edytuj powikłanie</h3>
-                <input type="datetime-local" name="date" value={date} onChange={({ target }) => setDate(target.value)} required />
-                <input type="text" name="description" value={description} onChange={({ target }) => setDescription(target.value)} required />
-                {diseaseCourseOptions ? <Select required
-                    value={diseaseCourse}
-                    onChange={setDiseaseCourse}
-                    options={diseaseCourseOptions} />
-                    : <Select placeholder="Wczytywanie danych..." />}
-                <button type="submit" className="btn btn-primary btn-lg w-100">Zapisz zmiany</button>
+            <form onSubmit={handleSubmit}>
+                <div className="pb-3 pt-3">
+                    <h2>Edytuj powikłanie</h2>
+                </div>
+
+                <div className="form-outline mb-4">
+                    <label className="form-label" htmlFor="date">Data i godzina</label>
+                    <RequiredComponent />
+                    <input type="datetime-local" id="date" name="date" value={date} onChange={({ target }) => setDate(target.value)} required className="form-control" />
+                </div>
+
+                <div className="form-outline mb-4">
+                    <label className="form-label" htmlFor="description">Opis</label>
+                    <RequiredComponent />
+                    <textarea id="description" name="description" value={description} onChange={({ target }) => setDescription(target.value)} required className="form-control" rows="3" placeholder="Dodaj opis powikłania" />
+                </div>
+
+                <div className="form-outline mb-4">
+                    <label className="form-label" htmlFor="diseaseCourse">Rodzaj powikłania</label>
+                    <RequiredComponent />
+                    {diseaseCourseOptions ? <Select id="diseaseCourse" name="diseaseCourse" required placeholder="Wybierz rodzaj powikłania"
+                        value={diseaseCourse}
+                        onChange={setDiseaseCourse}
+                        options={diseaseCourseOptions} />
+                        : <LoadingComponent />}
+                </div>
+
+                <div className="text-center">
+                    <button type="submit" className="btn btn-primary btn-block">Zapisz zmiany</button>
+                </div>
             </form>
         </Fragment>
     );

@@ -4,6 +4,8 @@ import request from "../Request";
 import Select from 'react-select';
 import getDataSelect from "../../data-control/getDataSelect";
 import Errors from "../Errors";
+import RequiredComponent from "../RequiredComponent";
+import LoadingComponent from "../LoadingComponent";
 
 const AddPatient = () => {
     const [pesel, setPesel] = useState("");
@@ -50,6 +52,17 @@ const AddPatient = () => {
             "cityId": city.value,
             "citizenshipId": citizenship.value,
         }
+
+        if (!city.value) {
+            setError({ errors: { message: ["Aby zapisać, należy wybrać miasto"] } })
+            return
+        }
+
+        if (!citizenship.value) {
+            setError({ errors: { message: ["Aby zapisać, należy wybrać obywatelstwo"] } })
+            return
+        }
+
         const callback = () => {
             toast.success("Pacjent został dodany!", { position: toast.POSITION.BOTTOM_RIGHT });
             setError(null)
@@ -65,33 +78,101 @@ const AddPatient = () => {
     }
 
     return (<Fragment>
-        { error != null ? <Errors data={error} /> : null}
-        <form onSubmit={handleSubmit} className="mt-5">
-            <h3>Tymczasowe dodaj pacjenta</h3>
-            <input type="text" name="pesel" value={pesel} onChange={({ target }) => setPesel(target.value)} required />
-            <input type="text" name="name" value={name} onChange={({ target }) => setName(target.value)} required />
-            <input type="text" name="surname" value={surname} onChange={({ target }) => setSurname(target.value)} required />
-            <div>
-                <input value="F" type="radio" name="sex" id="female" checked={sex === 'F'} onChange={handleChange} />Kobieta
-                <input value="M" type="radio" name="sex" id="male" checked={sex === 'M'} onChange={handleChange} />Mężczyzna
+        <div className="d-flex justify-content-center">
+            <div className="form-container">
+                {error != null ? <Errors data={error} /> : null}
+                <form onSubmit={handleSubmit}>
+                    <div className="pb-3 pt-3">
+                        <h2>Nowy pacjent</h2>
+                    </div>
+
+                    <div className="form-outline mb-4">
+                        <label className="form-label" htmlFor="pesel">Numer PESEL</label>
+                        <RequiredComponent />
+                        <input type="text" id="pesel" name="pesel" value={pesel} onChange={({ target }) => setPesel(target.value)} required maxLength={11} minLength={11} pattern={"^[0-9]{1,}$"} className="form-control" placeholder="Podaj numer PESEL pacjenta" />
+                    </div>
+
+                    <div className="form-outline mb-4">
+                        <label className="form-label" htmlFor="name">Imię</label>
+                        <RequiredComponent />
+                        <input type="text" id="name" name="name" value={name} onChange={({ target }) => setName(target.value)} required maxLength={50} className="form-control" placeholder="Podaj imię pacjenta" />
+                    </div>
+
+                    <div className="form-outline mb-4">
+                        <label className="form-label" htmlFor="surname">Nazwisko</label>
+                        <RequiredComponent />
+                        <input type="text" id="surname" name="surname" value={surname} onChange={({ target }) => setSurname(target.value)} required maxLength={50} className="form-control" placeholder="Podaj nazwisko pacjenta" />
+                    </div>
+
+                    <div id="radio-group" className="form-outline mb-4">
+                        <label className="form-label" htmlFor="radio-group">Płeć</label>
+                        <RequiredComponent />
+                        <div className="form-check">
+                            <label className="form-check-label" htmlFor="female">
+                                <span>Kobieta</span>
+                                <input className="form-check-input" value="F" type="radio" name="sex" id="female" checked={sex === 'F'} onChange={handleChange} />
+                            </label>
+                        </div>
+                        <div className="form-check">
+                            <label className="form-check-label" htmlFor="male">
+                                <span>Mężczyzna</span>
+                                <input className="form-check-input" value="M" type="radio" name="sex" id="male" checked={sex === 'M'} onChange={handleChange} />
+                            </label>
+                        </div>
+                    </div>
+
+                    <div className="form-outline mb-4">
+                        <label className="form-label" htmlFor="birthDate">Data urodzenia</label>
+                        <RequiredComponent />
+                        <input type="date" id="birthDate" name="birthDate" value={birthDate} onChange={({ target }) => setBirthDate(target.value)} required className="form-control" />
+                    </div>
+
+                    <div className="form-outline mb-4">
+                        <label className="form-label" htmlFor="street">Ulica</label>
+                        <RequiredComponent />
+                        <input type="text" id="street" name="street" value={street} onChange={({ target }) => setStreet(target.value)} required maxLength={50} className="form-control" placeholder="Podaj ulicę" />
+                    </div>
+
+                    <div className="form-outline mb-4">
+                        <label className="form-label" htmlFor="address">Numer domu{'/'}mieszkania</label>
+                        <RequiredComponent />
+                        <input type="text" id="address" name="address" value={address} onChange={({ target }) => setAddress(target.value)} required maxLength={10} className="form-control" placeholder="Podaj numer domu/mieszkania" />
+                    </div>
+
+                    <div className="form-outline mb-4">
+                        <label className="form-label" htmlFor="phoneNumber">Numer telefonu</label>
+                        <input type="text" id="phoneNumber" name="phoneNumber" value={phoneNumber} onChange={({ target }) => setPhoneNumber(target.value)} maxLength={9} minLength={9} pattern={"^[0-9]{1,}$"} required className="form-control" placeholder="Podaj numer telefonu pacjenta" />
+                    </div>
+
+                    <div className="form-outline mb-4">
+                        <label className="form-label" htmlFor="city">Miasto</label>
+                        <RequiredComponent />
+                        {citiesOptions ? <div className="form-outline">
+                            <Select id="city" name="city" required placeholder="Wybierz miasto"
+                                value={city}
+                                onChange={setCity}
+                                options={citiesOptions} />
+                        </div> : <LoadingComponent />}
+                    </div>
+
+                    <div className="form-outline mb-4">
+                        <label className="form-label" htmlFor="citizenship">Obywatelstwo</label>
+                        <RequiredComponent />
+                        {citizenshipsOptions ? <div className="form-outline">
+                            <Select id="citizenship" name="citizenship" required placeholder="Wybierz obywatelstwo"
+                                value={citizenship}
+                                onChange={setCitizenship}
+                                options={citizenshipsOptions} />
+                        </div> : <LoadingComponent />}
+                    </div>
+
+                    <div className="text-center">
+                        <button type="submit" className="btn btn-primary btn-block">Dodaj pacjenta</button>
+                    </div>
+                </form >
             </div>
-            <input type="date" name="birthDate" value={birthDate} onChange={({ target }) => setBirthDate(target.value)} required />
-            <input type="text" name="street" value={street} onChange={({ target }) => setStreet(target.value)} required />
-            <input type="text" name="address" value={address} onChange={({ target }) => setAddress(target.value)} required />
-            <input type="text" name="phoneNumber" value={phoneNumber} onChange={({ target }) => setPhoneNumber(target.value)} required />
-            {citiesOptions ? <Select required placeholder="Wybierz miasto"
-                value={city}
-                onChange={setCity}
-                options={citiesOptions} />
-                : <Select placeholder="Wczytywanie danych..." />}
-            {citizenshipsOptions ? <Select required placeholder="Wybierz obywatelstwo"
-                value={citizenship}
-                onChange={setCitizenship}
-                options={citizenshipsOptions} />
-                : <Select placeholder="Wczytywanie danych..." />}
-            <button type="submit" className="btn btn-primary btn-lg w-100">Dodaj pacjenta</button>
-        </form>
-    </Fragment>
+        </div>
+    </Fragment >
     );
 }
 

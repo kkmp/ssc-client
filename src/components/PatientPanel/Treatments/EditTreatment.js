@@ -5,6 +5,8 @@ import Errors from "../../Errors";
 import dateService from "../../DateService";
 import Select from "react-select";
 import getDataSelect from "../../../data-control/getDataSelect";
+import RequiredComponent from "../../RequiredComponent";
+import LoadingComponent from "../../LoadingComponent";
 
 const EditTreatment = (treatment) => {
     const [startDate, setStartDate] = useState("");
@@ -15,7 +17,7 @@ const EditTreatment = (treatment) => {
     const [error, setError] = useState(null);
 
     const isCovidOptions = [
-        { value: null, label: "-" },
+        { value: '', label: "-" },
         { value: true, label: "Stwierdzono COVID" },
         { value: false, label: "Nie stwierdzono COVID" },
     ]
@@ -51,11 +53,11 @@ const EditTreatment = (treatment) => {
 
         if (endDate) {
             data.endDate = endDate
-        } 
+        }
 
-        if (isCovid) {
+        if (isCovid.value) {
             data.isCovid = isCovid.value
-        } 
+        }
 
         const callback = () => {
             treatment.onSubmit()
@@ -71,20 +73,45 @@ const EditTreatment = (treatment) => {
     return (
         <Fragment>
             {error != null ? <Errors data={error} /> : null}
-            <form onSubmit={handleSubmit} className="mt-5">
-                <h3>Edytuj powikłanie</h3>
-                <input type="datetime-local" name="startDate" value={startDate} onChange={({ target }) => setStartDate(target.value)} required />
-                <input type="datetime-local" name="endDate" value={endDate} onChange={({ target }) => setEndDate(target.value)} />
-                <Select required
-                    value={isCovid}
-                    onChange={setIsCovid}
-                    options={isCovidOptions} />
-                {treatmentStatusOptions ? <Select required
-                    value={treatmentStatus}
-                    onChange={setTreatmentStatus}
-                    options={treatmentStatusOptions} />
-                    : <Select placeholder="Wczytywanie danych..." />}
-                <button type="submit" className="btn btn-primary btn-lg w-100">Zapisz zmiany</button>
+            <form onSubmit={handleSubmit}>
+                <div className="pb-3 pt-3">
+                    <h2>Edytuj leczenie</h2>
+                </div>
+
+                <div className="form-outline mb-4">
+                    <label className="form-label" htmlFor="startDate">Data i godzina rozpoczęcia leczenia</label>
+                    <RequiredComponent />
+                    <input type="datetime-local" id="startDate" name="startDate" value={startDate} onChange={({ target }) => setStartDate(target.value)} required className="form-control" />
+                </div>
+
+                <div className="form-outline mb-4">
+                    <label className="form-label" htmlFor="endDate">Data i godzina zakończenia leczenia</label>
+                    <input type="datetime-local" id="endDate" name="endDate" value={endDate} onChange={({ target }) => setEndDate(target.value)} className="form-control" />
+                </div>
+
+                <div className="form-outline mb-4">
+                    <label className="form-label" htmlFor="isCovid">Stwierdzenie zachorowania na COVID</label>
+                    <RequiredComponent />
+                    <Select id="isCovid" name="isCovid" required
+                        value={isCovid}
+                        onChange={setIsCovid}
+                        options={isCovidOptions} />
+                </div>
+
+                <div className="form-outline mb-4">
+                    <label className="form-label" htmlFor="treatmentStatus">Status leczenia</label>
+                    <RequiredComponent />
+                    {treatmentStatusOptions ? <div className="form-outline">
+                        <Select id="treatmentStatus" name="treatmentStatus" required placeholder="Wybierz status leczenia"
+                            value={treatmentStatus}
+                            onChange={setTreatmentStatus}
+                            options={treatmentStatusOptions} />
+                    </div> : <LoadingComponent />}
+                </div>
+
+                <div className="text-center">
+                    <button type="submit" className="btn btn-primary btn-block">Zapisz zmiany</button>
+                </div>
             </form>
         </Fragment>
     );

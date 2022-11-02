@@ -2,3 +2,13 @@
     color: dodgerblue;
     font-weight: bold;
 }
+
+.form-container {
+    width: 100%;
+    max-width: 640px;
+}
+
+label span{
+    display:inline-block;
+    margin-left: 10px;
+  }

@@ -5,29 +5,32 @@ import UserDetails from "../User/UserDetails";
 import Errors from "../Errors";
 import getTokenData from "../GetTokenData";
 import EditUser from "./EditUser";
+import Popup from "../Popup";
 
 const UserPanel = () => {
     const [data, setData] = useState([])
     const [showEditUser, setShowEditUser] = useState(false)
     const [error, setError] = useState(null);
     const [changed, setChanged] = useState(false);
+    const [buttonPopup, setButtonPopup] = useState(false)
     const { id } = useParams()
 
     useEffect(() => {
-        const handleChange = async () => {
-            const url = '/api/User/userDetails/' + id;
-            const callback = (response) => {
-                var newDataArr = response.data;
-                setData(newDataArr)
-                setError(null)
-            }
-            const errorCallback = (response) => {
-                setError(response.data)
-            }
-            await request({ url: url, type: "GET" }, callback, errorCallback);
-        }
         handleChange()
     }, [changed]);
+
+    const handleChange = async () => {
+        const url = '/api/User/userDetails/' + id;
+        const callback = (response) => {
+            var newDataArr = response.data;
+            setData(newDataArr)
+            setError(null)
+        }
+        const errorCallback = (response) => {
+            setError(response.data)
+        }
+        await request({ url: url, type: "GET" }, callback, errorCallback);
+    }
 
     const handleOnClick = () => {
         setShowEditUser(!showEditUser)
@@ -59,7 +62,10 @@ const UserPanel = () => {
         error != null ? <Errors data={error} /> :
             <Fragment>
                 <UserDetails data={data} />
-                <button onClick={handleOnClick}>Edytuj dane</button>
+
+                <Popup component={<EditUser onSubmit={handleChange} />} trigger={buttonPopup} setTrigger={setButtonPopup} />
+                <button onClick={() => setButtonPopup(true)}>Edytuj dane</button>
+
                 {showEditUser ? <EditUser /> : ""}
                 <button disabled={getTokenData().id === id} onClick={changeActivity}>{data.isActive ? "Dezaktywuj konto" : "Aktywuj konto"}</button>
             </Fragment>

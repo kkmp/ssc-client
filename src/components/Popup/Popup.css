@@ -17,10 +17,16 @@
     width: 100%;
     max-width: 640px;
     background-color: white;
+    /* max-height: 800px; */
 }
 
-.popup-inner .close-btn {
+.popup-inner .btn-close {
     position: absolute;
     top: 16px;
     right: 16px;
 }
+
+/* .scrollable {
+    overflow-y: scroll;
+    max-height: 640px;
+} */

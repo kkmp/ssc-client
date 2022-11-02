@@ -35,8 +35,7 @@ const TestDetails = (test) => {
     return (
         error != null ? <Errors data={error} /> :
             <Fragment>
-                {data.orderNumber} {data.testType} {data.testDate} {data.resultDate} {data.place}
-                {showResult(data.result)}
+                {data.orderNumber} {data.testType} {data.testDate} {data.resultDate} {data.placeName} {data.placeStreet} {data.placeCityName} ({data.placeCityProvinceName}) {showResult(data.result)}
                 <Popup trigger={<button><Person /></button>} pinned position="bottom center">
                     <UserAvatar data={data} />
                 </Popup>

@@ -111,6 +111,7 @@ const AddTest = (props) => {
 
                 <div className="form-outline mb-4">
                     <label className="form-label" htmlFor="result">Wynik testu</label>
+                    <RequiredComponent />
                     <div className="form-outline mb-4">
                         <Select id="result" name="result" placeholder="Wybierz wynik testu"
                             value={result}
