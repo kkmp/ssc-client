@@ -6,6 +6,8 @@ const showResult = (result) => {
             return "Pozytywny"
         case 'I':
             return "Nierozstrzygający"
+        case null:
+            return "Brak wyniku"
         default:
             return null
     }

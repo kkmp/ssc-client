@@ -26,7 +26,8 @@
     right: 16px;
 }
 
-/* .scrollable {
+.scrollable {
+    padding: 5px;
     overflow-y: scroll;
     max-height: 640px;
-} */
+}

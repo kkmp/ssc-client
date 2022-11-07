@@ -21,7 +21,7 @@ const AddTest = (props) => {
     const [buttonPopup, setButtonPopup] = useState(false)
 
     const resultOptions = [
-        { value: '', label: "-" },
+        { value: '', label: "Brak wyniku" },
         { value: 'P', label: "Pozytywny" },
         { value: 'N', label: "Negatywny" },
         { value: 'I', label: "Nierozstrzygający" },
