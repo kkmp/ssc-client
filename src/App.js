@@ -62,6 +62,9 @@ function App(props) {
                   <NavMenu />
                   <AddPatient />
                 </Stack>
+                <Footer>
+                  
+                </Footer>
               </Box>
             
           </ProtectedRoute>}>
@@ -69,12 +72,15 @@ function App(props) {
 
         <Route path="/searchPatient" exact element={
           <ProtectedRoute roles={["Administrator", "Lekarz", "Laborant"]}>
-            <Box>
+            <Box bgcolor={'azure'}>
                 <NavBar />
                 <Stack direction="row">
                   <NavMenu />
                   <SearchPatient />
                 </Stack>
+                <Footer>
+                  
+                </Footer>
               </Box>
             
           </ProtectedRoute>}>
@@ -88,6 +94,9 @@ function App(props) {
                   <NavMenu />
                   <PatientPanel />
                 </Stack>
+                <Footer>
+                  
+                </Footer>
               </Box>
             
           </ProtectedRoute>}>
@@ -102,6 +111,9 @@ function App(props) {
                   <NavMenu />
                   <SearchUser />
                 </Stack>
+                <Footer>
+                  
+                </Footer>
               </Box>
             
           </ProtectedRoute>}>
@@ -115,6 +127,9 @@ function App(props) {
                   <NavMenu />
                   <UserPanel />
                 </Stack>
+                <Footer>
+                  
+                </Footer>
               </Box>
             
           </ProtectedRoute>}>
@@ -128,6 +143,9 @@ function App(props) {
                   <NavMenu />
                   <AddUser />
                 </Stack>
+                <Footer>
+                  
+                </Footer>
               </Box>
             
           </ProtectedRoute>}>
@@ -141,6 +159,9 @@ function App(props) {
                   <NavMenu />
                   <Analysis />
                 </Stack>
+                <Footer>
+                  
+                </Footer>
               </Box>
             
           </ProtectedRoute>}>

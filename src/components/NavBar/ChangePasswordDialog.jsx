@@ -69,7 +69,7 @@ export default function CustomizedDialogs() {
         open={open}
       >
         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Modal title
+          SPrawdz DIalog
         </BootstrapDialogTitle>
         <DialogContent dividers>
           <Typography gutterBottom>

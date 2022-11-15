@@ -34,7 +34,9 @@ const SearchUser = () => {
         setOrderType(event.target.value)
     }
 
-    return (<Fragment>
+    return (
+    
+    <Fragment>
         {error != null ? <Errors data={error} /> : null}
         <form onSubmit={handleSubmit} className="mt-5">
             <h2>Wyszukiwarka czy coś</h2>
@@ -55,6 +57,7 @@ const SearchUser = () => {
         </form>
         {data.map((user) => <User key={user["id"]} data={user} showButton={true}/>)}
     </Fragment>
+    
     );
 }
 

@@ -47,6 +47,7 @@ export default function Home() {
                         <br></br>
                         
                         <Container>
+                            <Box p={3}>
                             <Typography variant="h6" marginBottom={"20px"}><People/> Ostatnio dodani pacjenci</Typography>
                             <TableContainer sx={{padding: '10px 10px 10px 10px', borderRadius: '16px', boxShadow: "1px 0px 21px 4px rgba(66, 68, 90, 1)"}} component={Paper} >
                                 <Table aria-label="simple table">
@@ -69,8 +70,9 @@ export default function Home() {
                                     </TableBody>
                                 </Table>
                             </TableContainer>
-                    
+                            </Box>
                         </Container>
+                        
                         
             </Fragment>
         </Box>

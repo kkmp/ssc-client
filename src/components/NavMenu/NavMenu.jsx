@@ -32,7 +32,8 @@ const NavMenu = () => {
                     flex={1}
                     p={2}
                     sx={{display:{xs: "none", sm: "block"}}}
-                    height="800px"
+                    //height="800px"
+                    minHeight="800px"
                     
                     >
            <List>                 
@@ -62,7 +63,7 @@ const NavMenu = () => {
                         <ListItemIcon>
                             <Home/>
                         </ListItemIcon>
-                        <ListItemText primary="Homepage" />
+                        <ListItemText primary="Home" />
                     </ListItemButton>
                 </ListItem>
                 <ListItem disablePadding>
@@ -70,7 +71,7 @@ const NavMenu = () => {
                         <ListItemIcon>
                             <PersonAdd/>
                         </ListItemIcon>
-                        <ListItemText primary="Add patient" />
+                        <ListItemText primary="Dodaj pacjenta" />
                     </ListItemButton>
                 </ListItem>
                 <ListItem disablePadding>
@@ -78,7 +79,7 @@ const NavMenu = () => {
                         <ListItemIcon>
                             <PersonSearch/>
                         </ListItemIcon>
-                        <ListItemText primary="Search patient" />
+                        <ListItemText primary="Wyszukaj pacjenta" />
                     </ListItemButton>
                 </ListItem>
                 <ListItem disablePadding>
@@ -86,7 +87,7 @@ const NavMenu = () => {
                         <ListItemIcon>
                             <QueryStats/>
                         </ListItemIcon>
-                        <ListItemText primary="Analysis" />
+                        <ListItemText primary="Analiza" />
                     </ListItemButton>
                 </ListItem>
                 <ListItem disablePadding>
@@ -94,7 +95,7 @@ const NavMenu = () => {
                         <ListItemIcon>
                             <Help/>
                         </ListItemIcon>
-                        <ListItemText primary="Help" />
+                        <ListItemText primary="Pomoc" />
                     </ListItemButton>
                 </ListItem>
                 
@@ -105,7 +106,7 @@ const NavMenu = () => {
                                 <ListItemIcon>
                                     <GroupAdd/>
                                 </ListItemIcon>
-                                <ListItemText primary="Add user" />
+                                <ListItemText primary="Dodaj użytkownika" />
                             </ListItemButton>
                         </ListItem>
                         <ListItem disablePadding>
@@ -113,7 +114,7 @@ const NavMenu = () => {
                                 <ListItemIcon>
                                     <Search/>
                                 </ListItemIcon>
-                                <ListItemText primary="Search user" />
+                                <ListItemText primary="Wyszukaj użytkownika" />
                             </ListItemButton>
                         </ListItem>
                        
