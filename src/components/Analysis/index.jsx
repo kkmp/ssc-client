@@ -40,7 +40,8 @@ const Analysis = () => {
         handleChange()
     }, []);
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         let url = "/api/Report/" + type + '/';
         if (type === "tests") {
             url += category + "/"
@@ -157,15 +158,15 @@ const Analysis = () => {
                         </Fragment> : null}
                     </div>
 
-                    <form className="col-6">
+                    <form className="col-6" onSubmit={handleSubmit}>
                         <div className="form-outline mb-4">
                             <label className="form-label" htmlFor="dateFrom">Data od</label>
-                            <input type="date" id="dateFrom" name="dateFrom" value={dateFrom} onChange={({ target }) => setDateFrom(target.value)} className="form-control" />
+                            <input type="date" id="dateFrom" name="dateFrom" value={dateFrom} onChange={({ target }) => setDateFrom(target.value)} className="form-control" required />
                         </div>
 
                         <div className="form-outline mb-4">
                             <label className="form-label" htmlFor="dateTo">Data do</label>
-                            <input type="date" id="dateTo" name="dateTo" value={dateTo} onChange={({ target }) => setDateTo(target.value)} className="form-control" />
+                            <input type="date" id="dateTo" name="dateTo" value={dateTo} onChange={({ target }) => setDateTo(target.value)} className="form-control" required />
                         </div>
 
                         <div className="form-outline mb-4">
@@ -179,7 +180,7 @@ const Analysis = () => {
                         </div>
 
                         <div className="text-center">
-                            <button type="button" onClick={handleSubmit} className="btn btn-primary btn-block">Wyświetl raport</button>
+                            <button type="submit" className="btn btn-primary btn-block">Wyświetl raport</button>
                         </div>
                     </form>
                 </div>
