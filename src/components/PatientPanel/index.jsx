@@ -9,6 +9,9 @@ import Treatments from "./Treatments";
 import TreatmentDiseaseCourses from "./TreatmentDiseaseCourses";
 import Errors from "../Errors";
 import Popup from "../Popup";
+import { Container, Box, Typography, Button } from "@mui/material";
+import { AccountBox } from "@mui/icons-material";
+import Patient from "../Patient/Patient";
 
 const PatientPanel = () => {
     const [data, setData] = useState(null)
@@ -37,14 +40,27 @@ const PatientPanel = () => {
         error != null ? <Errors data={error} /> :
                 data != null ?
                     <Fragment>
-                        <PatientDetails data={data} />
-                        <button onClick={() => setButtonPopup(true)}>Edytuj dane</button>
+                        <Container>
+                        <Box p={3}>
+                            <Typography variant="h6">
+                                <AccountBox /> Pacjent
+                            </Typography>
+                        </Box>
+                            <Box p={3}>
+                                <PatientDetails data={data} />
+                            </Box>
+                        
+                        <Button variant='outlined' onClick={() => setButtonPopup(true)}>Edytuj dane</Button>
                         <Popup component={<EditPatient onSubmit={handleChange} />} trigger={buttonPopup} setTrigger={setButtonPopup} />
 
                         <Tests id={id} />
                         <MedicalHistories id={id} />
                         <Treatments id={id} />
                         <TreatmentDiseaseCourses id={id} />
+
+                        </Container>
+                        
+
                     </Fragment> :  <div className="spinner-border" role="status"></div>
                 
     );

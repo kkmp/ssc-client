@@ -2,7 +2,6 @@ import React, { Fragment, useState } from "react";
 import request from "../Request";
 import Patient from "../Patient/Patient";
 import Errors from "../Errors";
-import Paginate from "../Paginate";
 import InfiniteScroll from "react-infinite-scroller";
 import { Container, Box, Typography, FormLabel, TextField, FormControl,
         Checkbox, Paper, InputAdornment, Radio, RadioGroup, FormControlLabel, Button,
@@ -301,39 +300,15 @@ const SearchPatient = () => {
                 <Typography variant="h6" textTransform={"full-width"} mb={4}>
                     Wyniki wyszukiwania
                 </Typography>
-                <TableContainer
-                sx={{
-                  padding: "10px 10px 10px 10px",
-                  borderRadius: "16px",
-                  boxShadow: "1px 0px 21px 4px rgba(66, 68, 90, 1)",
-                }}
-                component={Paper}
-              >
-                <Table aria-label="simple table">
-                    <TableHead sx={{ th: { fontWeight: "bold" } }}>
-                      <TableCell>PŁEĆ</TableCell>
-                      <TableCell>IMIĘ</TableCell>
-                      <TableCell>NAZWISKO</TableCell>
-                      <TableCell>PESEL</TableCell>
-                      <TableCell>DATA URODZENIA</TableCell>
-                      <TableCell>AKCJA</TableCell>
-                    </TableHead>
-                    
-                    
-                    <TableBody>
+               
 
                     {data.map((patient) => (
-                        <TableRow
-                          sx={{
-                            "&:last-child td, &:last-child th": { border: 0 },
-                          }}
-                        >
+                        <Box p={5}>
                           <Patient key={patient.id} data={patient} />
-                        </TableRow>
+                        </Box>
+                          
+                
                       ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
                 </Fragment>:null
             
             }

@@ -1,6 +1,6 @@
 import { Fragment } from "react"
-import { Stack, Avatar, Box, Paper, Chip, Card, Container, Typography} from "@mui/material"; 
-import {Science, AdminPanelSettings, HealthAndSafety, AccountBox, ColorizeOutlined} from "@mui/icons-material";
+import { Stack, Avatar, Box, Paper, Chip, Container, Typography, Button} from "@mui/material"; 
+import {Science, AdminPanelSettings, HealthAndSafety} from "@mui/icons-material";
 import { styled } from '@mui/material/styles';
 
 
@@ -38,19 +38,16 @@ const User = (user) => {
         color: theme.palette.text.secondary,
         borderRadius: '16px',
         maxHeight: '200px',
-        marginTop:'20px',
         display:"flex",
         boxShadow: "1px 0px 21px 4px rgba(66, 68, 90, 1)",
       }));
 
     return (
+        
         <Fragment>
             <Container>
-                <Typography variant="h6" >
-                    <AccountBox/> Mój profil
-                </Typography>
                 <Item>
-                    <Stack direction={'row'} spacing={{ xs: 2, sm: 3, md: 5 }}>
+                    <Stack direction={'row'} spacing={{ xs: 2, sm: 4, md: 5 }}>
                         <Box>
                             <Avatar sx={{ width: 56, height: 56, margin:"10px" }} > {showRoleIcon()} </Avatar>
                         </Box>
@@ -73,14 +70,6 @@ const User = (user) => {
                             </Stack>
                         </Box>
                         
-                        {/* 
-                        <Stack direction={'column'} spacing={{ xs: 0.5, sm: 0.5, md: 0.5 }} display="flex" marginTop={2} >
-                        <Typography variant="body2" sx={{mt:1.5}} textAlign={'center'} > Status </Typography>
-
-                            {showActivity()}
-                        </Stack>
-                        */}
-                        
                         {
                            user.data.role === "Administrator" ?
                            <Box>
@@ -94,11 +83,14 @@ const User = (user) => {
                         <Box paddingTop={2.5}>
                             {showActivity()}
                         </Box>
+                        <Box paddingTop={2.5}>
+                            {user.showButton ? <Button variant="outlined" onClick={() => handleAction(user.data.id)}>Szczegóły</Button> : ""}
+                        </Box>
                         
                     </Stack>
                    
                 </Item>
-                    {user.showButton ? <button onClick={() => handleAction(user.data.id)}>Szczegółyyyy</button> : ""}
+                    
 
             </Container>
         </Fragment>

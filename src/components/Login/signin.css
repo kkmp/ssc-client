@@ -1,6 +1,7 @@
 body{
     
     background-image: url(/src/components/img/research-resources-logo-l.jpg);
+    /*background-repeat: no-repeat;*/
 }
 h1{
     /*width: 554px;*/

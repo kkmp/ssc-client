@@ -9,6 +9,7 @@ import SearchUser from "./components/SearchUser"
 import PatientPanel from "./components/PatientPanel"
 import UserPanel from "./components/UserPanel"
 import AddUser from "./components/AddUser"
+import Helper from "./components/Helper/Helper"
 import NavBar from "./components/NavBar/NavBar"
 import { ToastContainer } from "react-toastify"
 import './App.css';
@@ -88,7 +89,7 @@ function App(props) {
 
         <Route path="/patient/:id" exact element={
           <ProtectedRoute roles={["Administrator", "Lekarz", "Laborant"]}>
-            <Box>
+            <Box bgcolor={'azure'}>
                 <NavBar />
                 <Stack direction="row">
                   <NavMenu />
@@ -105,7 +106,7 @@ function App(props) {
 
         <Route path="/searchUser" exact element={
           <ProtectedRoute roles={["Administrator"]}>
-            <Box>
+            <Box bgcolor={'azure'}>
                 <NavBar />
                 <Stack direction="row">
                   <NavMenu />
@@ -121,7 +122,7 @@ function App(props) {
 
         <Route path="/user/:id" exact element={
           <ProtectedRoute roles={["Administrator"]}>
-            <Box>
+            <Box bgcolor={'azure'}>
                 <NavBar />
                 <Stack direction="row">
                   <NavMenu />
@@ -142,6 +143,22 @@ function App(props) {
                 <Stack direction="row">
                   <NavMenu />
                   <AddUser />
+                </Stack>
+                <Footer>
+                  
+                </Footer>
+              </Box>
+            
+          </ProtectedRoute>}>
+        </Route>
+
+        <Route path="/help" exact element={
+          <ProtectedRoute roles={["Administrator", "Lekarz", "Laborant"]}>
+            <Box bgcolor={'azure'}>
+                <NavBar />
+                <Stack direction="row">
+                  <NavMenu />
+                  <Helper />
                 </Stack>
                 <Footer>
                   

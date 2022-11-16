@@ -5,8 +5,7 @@ import Patient from "../Patient/Patient";
 import UserDetails from "../User/UserDetails";
 
 import {Box, Container, Typography} from "@mui/material";
-import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Paper, Card } from "@mui/material";
-import { People } from "@mui/icons-material";
+import { People, AccountBox } from "@mui/icons-material";
 
 
 export default function Home() {
@@ -38,47 +37,32 @@ export default function Home() {
 
     
     return (
-        
-            <Box bgcolor={'azure'} flex={5}>
-                <Fragment>
+      <Box bgcolor={"azure"} flex={5}>
+        <Fragment>
+          <Container>
+            <Box p={3}>
+              <Typography variant="h6">
+                <AccountBox /> Mój profil
+              </Typography>
+            </Box>
+          </Container>
+          <UserDetails data={userData} />
+          {/*<button onClick={handleOnClick}>Zmień hasło</button>*/}
 
-                        <UserDetails data={userData} />
-                        {/*<button onClick={handleOnClick}>Zmień hasło</button>*/}
-                        <br></br>
-                        
-                        <Container>
-                            <Box p={3}>
-                            <Typography variant="h6" marginBottom={"20px"}><People/> Ostatnio dodani pacjenci</Typography>
-                            <TableContainer sx={{padding: '10px 10px 10px 10px', borderRadius: '16px', boxShadow: "1px 0px 21px 4px rgba(66, 68, 90, 1)"}} component={Paper} >
-                                <Table aria-label="simple table">
-                                    <TableHead sx={{ 'th': {fontWeight: 'bold'}}}>
-                                        <TableCell>PŁEĆ</TableCell>
-                                        <TableCell>IMIĘ</TableCell>
-                                        <TableCell>NAZWISKO</TableCell>
-                                        <TableCell>PESEL</TableCell>
-                                        <TableCell>DATA URODZENIA</TableCell>
-                                        <TableCell>AKCJA</TableCell>
+          <Container>
+            <Box p={3}>
+              <Typography variant="h6" marginBottom={"40px"}>
+                <People /> Ostatnio dodani pacjenci
+              </Typography>
 
-                                    </TableHead>
-                                    <TableBody>
-                                        
-                                            {addedPatients.map((patient) =>
-                                                <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0} }}>
-                                                    <Patient key={patient["id"]} data={patient} />
-                                                </TableRow>
-                                            )}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-                            </Box>
-                        </Container>
-                        
-                        
-            </Fragment>
-        </Box>
- 
-            
-       
-        
+              {addedPatients.map((patient) => (
+				<Box mb={5}>
+                	<Patient key={patient["id"]} data={patient} />
+				</Box>
+              ))}
+            </Box>
+          </Container>
+        </Fragment>
+      </Box>
     );
 };

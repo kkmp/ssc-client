@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import getTokenData from "../GetTokenData";
-import { Link } from "react-router-dom";
 import { Fragment } from "react";
 import {Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, Avatar, ListItemAvatar, AppBar} from "@mui/material";
 import {Home, AdminPanelSettings, PersonAdd, PersonSearch, GroupAdd, Search, QueryStats, Help, Science, HealthAndSafety} from "@mui/icons-material";
@@ -55,9 +54,7 @@ const NavMenu = () => {
                 </ListItemAvatar>
                 <ListItemText primary={name + " " + surname} secondary={role} />
             </ListItem>
-            <Divider variant="inset" component="li" />
-            
-            
+            <Divider component="li" />
                 <ListItem disablePadding>
                     <ListItemButton component="a" href="/">
                         <ListItemIcon>
@@ -91,7 +88,7 @@ const NavMenu = () => {
                     </ListItemButton>
                 </ListItem>
                 <ListItem disablePadding>
-                    <ListItemButton component="a" href="/analysis">
+                    <ListItemButton component="a" href="/help">
                         <ListItemIcon>
                             <Help/>
                         </ListItemIcon>
