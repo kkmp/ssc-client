@@ -1,11 +1,13 @@
+import {Chip} from "@mui/material"
+
 const showResult = (result) => {
     switch (result) {
         case 'N':
-            return "Negatywny"
+            return   <Chip label="Negatywny" color="success" />
         case 'P':
-            return "Pozytywny"
+            return   <Chip label="Pozytywny" color="error" />
         case 'I':
-            return "Nierozstrzygający"
+            return   <Chip label="Nieroztrzygający" color="primary" />
         default:
             return null
     }

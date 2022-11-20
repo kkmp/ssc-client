@@ -1,17 +1,17 @@
 import { Fragment } from "react"
-import { Shield, Clipboard2Pulse, Eyedropper } from "react-bootstrap-icons";
+
 import './UserAvatar.css'
-import {Stack} from "@mui/material";
+import { AdminPanelSettings, Science, HealthAndSafety } from "@mui/icons-material"
 
 const UserAvatar = (user) => {
     const showRoleIcon = () => {
         switch (user.data.userRole) {
             case "Administrator":
-                return <Shield />
+                return <AdminPanelSettings />
             case "Lekarz":
-                return <Clipboard2Pulse />
+                return <Science />
             case "Laborant":
-                return <Eyedropper />
+                return <HealthAndSafety />
             default:
                 break
         }

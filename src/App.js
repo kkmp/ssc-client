@@ -95,6 +95,7 @@ function App(props) {
                   <NavMenu />
                   <PatientPanel />
                 </Stack>
+
                 <Footer>
                   
                 </Footer>
