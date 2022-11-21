@@ -66,7 +66,7 @@ const User = (user) => {
                         <Box>
                             <Stack direction={'column'} spacing={{ xs: 0.5, sm: 0.5, md: 0.5 }} >
                                 <Typography variant="body2" sx={{mt:1.5}} textAlign={'center'} > Telefon </Typography>
-                                <Typography variant="body1"> {user.data.phone} </Typography>
+                                <Typography variant="body1"> {user.data.phoneNumber} </Typography>
                             </Stack>
                         </Box>
                         

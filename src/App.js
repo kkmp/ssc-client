@@ -171,7 +171,7 @@ function App(props) {
 
         <Route path="/analysis" exact element={
           <ProtectedRoute roles={["Administrator", "Lekarz"]}>
-            <Box>
+            <Box bgcolor={'azure'}>
                 <NavBar />
                 <Stack direction="row">
                   <NavMenu />

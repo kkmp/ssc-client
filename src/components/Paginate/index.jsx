@@ -1,12 +1,10 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { styled } from '@mui/material/styles';
-import Pagination from '@mui/material/Pagination';
-import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
+import { Box, Button, Container, Stack } from "@mui/material";
+
 
 
 
@@ -84,18 +82,23 @@ const Paginate = (props) => {
           border: 0,
         },
       }));
+      
 
 
     return (
-            <Fragment>
-                       
-                        {/* wiersze dla elementów testy/ historia chorby/ leczenie/ powiklania */}
-                        {dataToShow.map((element) => <Fragment key={element.key}>{element}</Fragment>)}
-                        
-                 
-                <button key="prev" disabled={prevDisabled} onClick={prevPage}>&larr;</button>
-                <button key="next" disabled={nextDisabled} onClick={nextPage} >&rarr;</button>
-            </Fragment >
+                <Fragment>
+                
+                    {/* wiersze dla elementów testy/ historia chorby/ leczenie/ powiklania */}
+                    {   dataToShow.map((element) => 
+                        <Fragment key={element.key}>{element}</Fragment>
+                    )}
+                
+                    <Box display={'flex'} alignItems={''}>
+                        <Button key="prev" disabled={prevDisabled} onClick={prevPage} ><KeyboardArrowLeft/></Button>
+                        <Button key="next" disabled={nextDisabled} onClick={nextPage} ><KeyboardArrowRight/></Button>
+                    </Box>
+                
+                </Fragment>
     );
 }
 

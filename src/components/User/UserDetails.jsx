@@ -6,7 +6,7 @@ const UserDetails = (user) => {
 
     return (
         <Fragment>
-            <Box p={3}>
+            <Box>
             <User data={user.data} showButton={false} />
              {/*przeksztalcic w jeden komponent */}
             </Box>

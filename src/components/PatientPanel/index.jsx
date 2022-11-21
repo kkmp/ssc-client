@@ -10,8 +10,7 @@ import TreatmentDiseaseCourses from "./TreatmentDiseaseCourses";
 import Errors from "../Errors";
 import Popup from "../Popup";
 import { Container, Box, Typography, Button } from "@mui/material";
-import { AccountBox } from "@mui/icons-material";
-//import BasicTabs from "./tabs";
+import { AccountBox, Edit } from "@mui/icons-material";
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -55,19 +54,22 @@ function TabPanel(props) {
   export function BasicTabs() {
     const [value, setValue] = React.useState(0);
     const { id } = useParams()
+    const [buttonPopup, setButtonPopup] = useState(false)
   
     const handleChange = (event, newValue) => {
       setValue(newValue);
     };
   
     return (
-      <Box p={3} sx={{ width: '100%' }}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+      <Box sx={{ width: '100%' }}>
+        <Box m={3} sx={{ borderBottom: 1, borderColor: 'divider' }} display={'flex'} justifyContent={'left'}>
           <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
             <Tab icon={<Vaccines/>} label="Testy" {...a11yProps(0)} />
             <Tab icon={<MedicalInformation/>} label="Historia choroby" {...a11yProps(1)} />
             <Tab icon={<HealthAndSafety/>} label="Leczenie" {...a11yProps(2)} />
             <Tab icon={<HeartBroken/>} label="Powikłania" {...a11yProps(2)} />
+            <Tab icon={<Edit/>} label="Edytuj dane" onClick={() => setButtonPopup(true)}/>
+            {/*<Button variant='filled' onClick={() => setButtonPopup(true)}>Edytuj dane</Button>*/}
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
@@ -82,6 +84,9 @@ function TabPanel(props) {
         <TabPanel value={value} index={3}>
           <TreatmentDiseaseCourses id={id}/>
         </TabPanel>
+        <Popup component={<EditPatient onSubmit={handleChange} />} trigger={buttonPopup} setTrigger={setButtonPopup} />
+
+
       </Box>
     );
   }
@@ -92,7 +97,7 @@ function TabPanel(props) {
 const PatientPanel = () => {
     const [data, setData] = useState(null)
     const [error, setError] = useState(null);
-    const [buttonPopup, setButtonPopup] = useState(false)
+    
     const { id } = useParams()
 
     const handleChange = async () => {
@@ -117,27 +122,17 @@ const PatientPanel = () => {
                 data != null ?
                     <Fragment>
                         <Container>
-                        <Box p={3}>
-                            <Typography variant="h6">
-                                <AccountBox /> Pacjent
-                            </Typography>
-                        </Box>
                             <Box p={3}>
-                                <PatientDetails data={data} />
+                                <Typography variant="h6">
+                                    <AccountBox /> Pacjent
+                                </Typography>
                             </Box>
-                        
-                        <Button variant='outlined' onClick={() => setButtonPopup(true)}>Edytuj dane</Button>
-                        <Popup component={<EditPatient onSubmit={handleChange} />} trigger={buttonPopup} setTrigger={setButtonPopup} />
-
-                        <BasicTabs/>
-                        {/*
-                        <Tests id={id} />
-                        <MedicalHistories id={id} />
-                        <Treatments id={id} />
-                        <TreatmentDiseaseCourses id={id} />
-                         */}
-                        
-
+                            <Box p={3}>
+                                <PatientDetails data={data} />    
+                            </Box>
+                            <Box>
+                                <BasicTabs/>
+                            </Box>
                         </Container>
                         
 

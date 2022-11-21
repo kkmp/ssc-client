@@ -33,6 +33,7 @@ const NavMenu = () => {
                     sx={{display:{xs: "none", sm: "block"}}}
                     //height="800px"
                     minHeight="800px"
+                    maxWidth={'500px'}
                     
                     >
            <List>                 

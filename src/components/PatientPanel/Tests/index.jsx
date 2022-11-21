@@ -36,7 +36,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
   }));
 
-
 const Tests = (id) => {
     const [data, setData] = useState(null)
     const [error, setError] = useState(null)
@@ -75,10 +74,10 @@ const Tests = (id) => {
         error != null ? <Errors data={error} /> :
             <Fragment>
                 <Box>
-                <Typography variant="h6"><Vaccines/>Testy</Typography> 
+                <Typography variant="h6" mb={5}><Vaccines/>Testy</Typography> 
                 </Box>
 
-                <TableContainer component={Paper}>
+                <TableContainer component={Paper} sx={{borderRadius:'16px',  boxShadow: "1px 0px 21px 4px rgba(66, 68, 90, 1)"}}>
                     <Table sx={{ minWidth: 700 }} aria-label="customized table">
                         <TableHead>
                         <TableRow>
@@ -101,8 +100,6 @@ const Tests = (id) => {
                     </Table>
                 </TableContainer>
                 
-                
-
                 {selectedTestData != null ?
                     <Popup component={<TestDetails onSubmit={handleChange} id={selectedTestData.id} />} trigger={buttonPopup} setTrigger={setButtonPopup} />
                     : null}

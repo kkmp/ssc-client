@@ -6,6 +6,36 @@ import TreatmentDiseaseCourseDetails from "./TreatmentDiseaseCourseDetails";
 import Popup from "../../Popup";
 import Paginate from "../../Paginate";
 import getTokenData from "../../GetTokenData";
+import { Typography, Box } from "@mui/material";
+import { styled } from '@mui/material/styles';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import { HeartBroken } from "@mui/icons-material";
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
+  
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    '&:last-child td, &:last-child th': {
+      border: 0,
+    },
+  }));
 
 const TreatmentDiseaseCourses = (id) => {
     const [data, setData] = useState(null)
@@ -49,14 +79,39 @@ const TreatmentDiseaseCourses = (id) => {
     return (
         error != null ? <Errors data={error} /> :
             <Fragment>
-                Powikłania:
-                {data != null ?
-                    <Paginate pageNumberChanged={pageNumberChanged} pageNumber={pageNumber} data={data.map((treatmentDiseaseCourse) => <TreatmentDiseaseCourse key={treatmentDiseaseCourse.id} data={treatmentDiseaseCourse} onClick={onClick} />)} />
-                    : null}
+                 <Box>
+                    <Typography variant="h6" mb={5}><HeartBroken/>Powikłania</Typography> 
+                </Box>
 
-                {selectedTestData != null ?
-                    <Popup component={<TreatmentDiseaseCourseDetails onSubmit={handleChange} id={selectedTestData.id} />} trigger={buttonPopup} setTrigger={setButtonPopup} />
-                    : null}
+                <TableContainer component={Paper} sx={{borderRadius:'16px',  boxShadow: "1px 0px 21px 4px rgba(66, 68, 90, 1)"}}>
+                    <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                        <TableHead>
+                        <TableRow>
+                            <StyledTableCell align="center">Data dodania</StyledTableCell>
+                            <StyledTableCell align="center">Opis</StyledTableCell>
+                            <StyledTableCell align="center">Rodzaj powikłania</StyledTableCell>
+                            <StyledTableCell align="center">Akcja</StyledTableCell>
+                        </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            
+                        {
+                            data != null ?
+                                <Paginate pageNumberChanged={pageNumberChanged} pageNumber={pageNumber} data={data.map((treatmentDiseaseCourse) => <TreatmentDiseaseCourse key={treatmentDiseaseCourse.id} data={treatmentDiseaseCourse} onClick={onClick} />)} />
+                            : null
+                        }
+
+                        {
+                            selectedTestData != null ?
+                                <Popup component={<TreatmentDiseaseCourseDetails onSubmit={handleChange} id={selectedTestData.id} />} trigger={buttonPopup} setTrigger={setButtonPopup} />
+                                : null
+                        }
+
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+                
+                
             </Fragment>
     );
 }
