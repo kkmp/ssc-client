@@ -14,7 +14,7 @@ const Helper = () =>{
         <Fragment>
             
             <Container>
-                <Box bgcolor={"azure"} flex={5}>
+                <Box flex={5}>
                     <Box p={3}>
                         <Typography variant="h6" mb={4}>
                             <Help /> Pomoc
