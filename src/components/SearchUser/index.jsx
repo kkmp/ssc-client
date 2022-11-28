@@ -3,8 +3,7 @@ import request from "../Request";
 import User from "../User/User";
 import Errors from "../Errors";
 import { Container, Box, Typography, FormLabel, TextField, FormControl,
-     Paper, InputAdornment, Radio, RadioGroup, FormControlLabel, Button,
-TableContainer, TableHead, Table, TableBody, TableRow, TableCell} from "@mui/material";
+      InputAdornment, Radio, RadioGroup, FormControlLabel, Button} from "@mui/material";
 import { Search } from "@mui/icons-material";
 import { Form } from "react-bootstrap";
 import InfiniteScroll from "react-infinite-scroller";
@@ -26,22 +25,6 @@ const SearchUser = () => {
         setHasMoreItems(true)
     };
 
-    {/*
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const url = '/api/User/filterUsers/' + pageNr + '/' + option + '/' + orderType + '/' + searchName
-        const callback = (response) => {
-            var newDataArr = Object.keys(response.data).map((key) => response.data[key]);
-            setData(newDataArr)
-            setError(null)
-        }
-        const errorCallback = (response) => {
-            setError(response.data)
-        }
-
-        await request({ url: url, type: "GET" }, callback, errorCallback);
-    };
-*/}
     const handleSearch = async () => {
 
         if(fetching)
@@ -119,8 +102,6 @@ const SearchUser = () => {
                       )
                     }}
                   />
-
-                  {/*<input type="text" name="search" id="search" value={searchName} onChange={({ target }) => setSearchName(target.value)} />*/}
                   <Box
                     sx={{ border: "dashed 1px grey" }}
                     padding={"10px"}
@@ -220,7 +201,7 @@ const SearchUser = () => {
                   <Button type="submit" variant="outlined" size="normal">
                     Szukaj
                   </Button>
-                  {/*<button type="submit">Szukaj</button>*/}
+                  
                 </FormControl>
               </Form>
             </Box>
@@ -257,37 +238,14 @@ const SearchUser = () => {
                         
                       ))}
                    
-                </Fragment>:null
+                </Fragment>:<Typography variant="h4">Brak wyników</Typography>
             
             }
               </InfiniteScroll>
             </Box>
           
         </Box>
-     
-    {/*
-        <Fragment>
-        {error != null ? <Errors data={error} /> : null}
-        <form onSubmit={handleSubmit} className="mt-5">
-            <h2>Wyszukiwarka czy coś</h2>
-            <input type="text" name="search" id="search" value={searchName} onChange={({ target }) => setSearchName(target.value)} />
-            <h3>Filtry</h3>
-            Sortowanie
-            <div>
-                <input value="surname" type="radio" name="option" id="surname" checked={option === 'surname'} onChange={handleChangeOption} />Nazwisko
-                <input value="email" type="radio" name="option" id="email" checked={option === 'email'} onChange={handleChangeOption} />Adres e-mail
-                <input value="active" type="radio" name="option" id="active" checked={option === 'active'} onChange={handleChangeOption} />Aktywność
-            </div>
-            Kolejność sortowania
-            <div>
-                <input value="ascending" type="radio" name="orderType" id="ascending" checked={orderType === 'ascending'} onChange={handleChangeOrderType} />Rosnąco
-                <input value="descending" type="radio" name="orderType" id="descending" checked={orderType === 'descending'} onChange={handleChangeOrderType} />Malejąco
-            </div>
-            <button type="submit">Szukaj</button>
-        </form>
-        {data.map((user) => <User key={user["id"]} data={user} showButton={true}/>)}
-    </Fragment>
-        */}
+    
     </Container>
     
     );

@@ -4,8 +4,7 @@ import Patient from "../Patient/Patient";
 import Errors from "../Errors";
 import InfiniteScroll from "react-infinite-scroller";
 import { Container, Box, Typography, FormLabel, TextField, FormControl,
-        Checkbox, Paper, InputAdornment, Radio, RadioGroup, FormControlLabel, Button,
-    TableContainer, TableHead, Table, TableBody, TableRow, TableCell} from "@mui/material";
+        Checkbox, InputAdornment, Radio, RadioGroup, FormControlLabel, Button} from "@mui/material";
 import { PersonSearch, Search } from "@mui/icons-material";
 import { Form } from "react-bootstrap";
 
@@ -128,7 +127,6 @@ const SearchPatient = () => {
                     }}
                   />
 
-                  {/*<input type="text" name="search" id="search" value={searchName} onChange={({ target }) => setSearchName(target.value)} />*/}
                   <Box
                     sx={{ border: "dashed 1px grey" }}
                     padding={"10px"}
@@ -174,14 +172,6 @@ const SearchPatient = () => {
                       />
                     </RadioGroup>
 
-                    {/*
-                Sortowanie
-            <div>
-                <input value="surname" type="radio" name="option" id="surname" checked={option === 'surname'} onChange={handleChangeOption} />Nazwisko
-                <input value="birthdate" type="radio" name="option" id="birthdate" checked={option === 'birthdate'} onChange={handleChangeOption} />Data urodzenia
-            </div>
-            */}
-
                     <FormLabel id="demo-radio-buttons-group-label">
                       Kolejność sortowania
                     </FormLabel>
@@ -219,13 +209,6 @@ const SearchPatient = () => {
                       />
                     </RadioGroup>
 
-                    {/* 
-            <div>
-                <input value="ascending" type="radio" name="orderType" id="ascending" checked={orderType === 'ascending'} onChange={handleChangeOrderType} />Rosnąco
-                <input value="descending" type="radio" name="orderType" id="descending" checked={orderType === 'descending'} onChange={handleChangeOrderType} />Malejąco
-            </div>
-            */}
-
                     <FormLabel id="demo-radio-buttons-group-label">
                       Płeć
                     </FormLabel>
@@ -262,25 +245,16 @@ const SearchPatient = () => {
                     </RadioGroup>
                   </Box>
 
-                  {/* <div>
-                <input type="checkbox" name="sex" value="female" id="female" onChange={handleChangeSex} />Kobieta
-            </div>
-            <div>
-                <input type="checkbox" name="sex" value="male" id="male" onChange={handleChangeSex} />Mężczyzna
-            </div>
-            */}
-
                   <Button type="submit" variant="outlined" size="normal">
                     Szukaj
                   </Button>
-                  {/*<button type="submit">Szukaj</button>*/}
+                
                 </FormControl>
               </Form>
             </Box>
 
             <Box p={3} align="center">
               
-              {/*data.map((patient) => <Patient key={patient["id"]} data={patient} />)*/}
 
               <InfiniteScroll
                 loadMore={handleSearch}
@@ -309,7 +283,8 @@ const SearchPatient = () => {
                           
                 
                       ))}
-                </Fragment>:null
+                </Fragment>:<Fragment><Typography variant="h4">Brak wyników</Typography></Fragment>
+                
             
             }
               </InfiniteScroll>

@@ -1,12 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { styled } from '@mui/material/styles';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableRow from '@mui/material/TableRow';
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
-import { Box, Button, Container, Stack } from "@mui/material";
-
-
-
+import { Box, Button } from "@mui/material";
 
 const Paginate = (props) => {
     const elementsPerPage = 3
@@ -39,7 +33,7 @@ const Paginate = (props) => {
             setNextDisabled(false)
         }
         
-        if(data.length == 0)
+        if(data.length === 0)
         {
             setPrevDisabled(true)
             setNextDisabled(true)
@@ -62,27 +56,6 @@ const Paginate = (props) => {
             setPageNumber(pageNumber + 1)
         }
     }
-
-    const StyledTableCell = styled(TableCell)(({ theme }) => ({
-        [`&.${tableCellClasses.head}`]: {
-          backgroundColor: theme.palette.common.black,
-          color: theme.palette.common.white,
-        },
-        [`&.${tableCellClasses.body}`]: {
-          fontSize: 14,
-        },
-      }));
-      
-      const StyledTableRow = styled(TableRow)(({ theme }) => ({
-        '&:nth-of-type(odd)': {
-          backgroundColor: theme.palette.action.hover,
-        },
-        // hide last border
-        '&:last-child td, &:last-child th': {
-          border: 0,
-        },
-      }));
-      
 
 
     return (

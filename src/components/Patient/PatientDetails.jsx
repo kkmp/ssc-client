@@ -7,8 +7,7 @@ import {
     Box,
     Paper,
     Container,
-    Typography,
-    Button,
+    Typography
   } from "@mui/material";
 
 const PatientDetails = (patient) => {
@@ -28,12 +27,6 @@ const PatientDetails = (patient) => {
 
     return (
         <Fragment>
-            <div>
-                {/*patient.data.sex === 'F' ? <GenderFemale /> : <GenderMale />
-                {patient.data.name} {patient.data.surname} {patient.data.pesel} {patient.data.birthDate != null ? patient.data.birthDate.split(" ")[0] : ""} 
-                {patient.data.street} {patient.data.address} {patient.data.phoneNumber} {patient.data.city} 
-                {patient.data.province} {patient.data.citizenship}*/}
-            </div>
 
             <Item>
         <Stack direction={"row"} spacing={{ xs: 4, sm: 5, md:10}}>

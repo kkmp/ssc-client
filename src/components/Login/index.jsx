@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Error from "../Error";
+import Errors from "../Errors";
 import './signin.css'
 import request from "../Request";
 import { Container } from "@mui/system";
@@ -37,23 +37,28 @@ export default function Login() {
                 </section>
                 <div>
 
-                    {error ? error.map((err, idx) => <Error message={err} key={idx} />): null}
+                    {error ? error.map((err, idx) => <Errors message={err} key={idx} />): null}
                 </div>
                 <div className="col-4 offset-4">
                     <form onSubmit={handleSubmit}>
                         <div className="form-group pb-2">
                             {/*Adres email*/}
-                            <input type="email" name="email" className="form-control" placeholder="Email" value={email} onChange={({ target }) => setEmail(target.value)} required/>
+                            <input type="email" name="email" className="form-control" placeholder="Email" 
+                            value={email} onChange={({ target }) => 
+                                setEmail(target.value)} required/>
                         </div>
                         <div className="form-group pb-2">
                             {/*Hasło*/}
-                            <input type="password" name="password" className="form-control" placeholder="Hasło" value={password} onChange={({ target }) => setPassword(target.value)} required />
+                            <input type="password" name="password" className="form-control" placeholder="Hasło" 
+                            value={password} onChange={({ target }) => 
+                                setPassword(target.value)} required />
                         </div>
                         <button type="submit" id="signin" className="btn btn-primary w-100 my-3 py-2">Zaloguj się</button>
                     </form>
                 </div>
                 <div className="text-center mt-1">
-                    <p>Nie pamiętam hasła <a className="text-decoration-none link-success fw-bold" href="/ChangePassword">Zmień hasło!</a></p>
+                    <p>Nie pamiętam hasła <a className="text-decoration-none link-success fw-bold" 
+                    href="/ChangePassword">Zmień hasło!</a></p>
                 </div>
             </div>
         </div>

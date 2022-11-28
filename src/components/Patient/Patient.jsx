@@ -6,7 +6,6 @@ import {
   Avatar,
   Box,
   Paper,
-  Container,
   Typography,
   Button,
 } from "@mui/material";

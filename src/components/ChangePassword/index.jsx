@@ -1,9 +1,8 @@
 import React from "react";
-import { useState, Fragment } from "react";
+import { useState } from "react";
 import request from "../Request";
 import Errors from "../Errors"
-import Error from "../Error";
-import { Typography, Container } from "@mui/material";
+import { Container } from "@mui/material";
 
 const ChangePassword = () => {
     const [email, setEmail] = useState("");
@@ -13,7 +12,7 @@ const ChangePassword = () => {
         e.preventDefault();
         const url = '/api/ChangePassword/getCode'
         const data = {
-            "email": email,
+            "email": email
         }
         const callback = () => {
             setError(null)
@@ -22,6 +21,7 @@ const ChangePassword = () => {
             setError(response.data)
         }
         await request({ url: url, data: data, type: "POST" }, callback, errorCallback, false);
+        
     }
 
     return (
@@ -35,12 +35,12 @@ const ChangePassword = () => {
                     <h1>Zmiana hasła</h1>
                 </section>
                 <div>
-                    {error ? error.map((err, idx) => <Error message={err} key={idx} />): null}
+                    {error ? error.map((err, idx) => <Errors message={err} key={idx} />): null}
                 </div>
                 <div className="col-6 offset-3">
                     <form onSubmit={handleSubmit}>
                         <div className="form-group pb-2">
-                            {/*Adres email*/}
+                            {/*Dlaczego nie jest wyswietlany blad?*/ console.log(error)}
                             <input type="email" name="email" className="form-control" placeholder="Email" value={email} onChange={({ target }) => setEmail(target.value)} required/>
                         </div>
                         <button type="submit" id="signin" className="btn btn-primary w-100 my-3 py-2">Wyślij Email</button>

@@ -7,6 +7,7 @@ import Errors from "../Errors";
 import RequiredComponent from "../RequiredComponent";
 import LoadingComponent from "../LoadingComponent";
 
+
 const AddPatient = () => {
     const [pesel, setPesel] = useState("");
     const [name, setName] = useState("");
@@ -54,18 +55,19 @@ const AddPatient = () => {
         }
 
         if (!city.value) {
-            setError({ errors: { message: ["Aby zapisać, należy wybrać miasto"] } })
+            setError({ errors: { message: ["Aby dodać, należy wybrać miasto"] } })
             return
         }
 
         if (!citizenship.value) {
-            setError({ errors: { message: ["Aby zapisać, należy wybrać obywatelstwo"] } })
+            setError({ errors: { message: ["Aby dodać, należy wybrać obywatelstwo"] } })
             return
         }
 
         const callback = () => {
             toast.success("Pacjent został dodany!", { position: toast.POSITION.BOTTOM_RIGHT });
             setError(null)
+            window.location("/Home")
         }
         const errorCallback = (response) => {
             setError(response.data)
@@ -79,9 +81,8 @@ const AddPatient = () => {
 
     return (
     <Fragment>
-        { error != null ? <Errors data={error} /> : null}
 
-        <div className="d-flex justify-content-center">
+<div className="d-flex justify-content-center">
             <div className="form-container">
                 {error != null ? <Errors data={error} /> : null}
                 <form onSubmit={handleSubmit}>
@@ -175,8 +176,7 @@ const AddPatient = () => {
                 </form >
             </div>
         </div>
-
-    </Fragment>
+    </Fragment >
     );
 }
 

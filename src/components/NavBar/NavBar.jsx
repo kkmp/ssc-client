@@ -1,14 +1,8 @@
 import {AppBar, ListItem, styled, Toolbar, Typography, ListItemButton} from "@mui/material";
-import { grey } from "@mui/material/colors";
-import { color, height  } from "@mui/system";
 import React, { useEffect, useState } from "react";
-import { Box } from "@mui/material";
 import Logo from '../img/Logo.png';
-import UserAvatar from "../User/UserAvatar";
-import User from "../User/User";
-import { HealthAndSafety, AdminPanelSettings, Science, AccountCircle} from "@mui/icons-material";
+import { HealthAndSafety, AdminPanelSettings, Science} from "@mui/icons-material";
 import { Avatar, Menu, MenuItem, IconButton } from "@mui/material";
-import AvatarMenu from '../AvatarMenu/AvatarMenu'
 import getTokenData from "../GetTokenData";
 import ChangePasswordOnDemand from "./ChangePasswordOnDemand";
 
@@ -21,11 +15,6 @@ const StyledToolbar = styled(Toolbar)({
     backgroundColor:"grey"
 })
 
-const StyledLogo = styled(Logo)({
-    width:"50px",
-    height:"50px"
-
-})
 
 const NavBar = () => {
     const [show, setShow] = useState(true)

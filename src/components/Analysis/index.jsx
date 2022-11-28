@@ -56,7 +56,6 @@ const Analysis = () => {
 
         const callback = (response) => {
             var newDataArr = response.data;
-            //setData(newDataArr.map(x => ({ title: x.key, value: x.proc, color: randomColor() })))
             var arr = newDataArr.map(x => ({ key: x.key, proc: Math.round((x.proc + Number.EPSILON) * 100) / 100 }))
             if (type === "tests" && category === "result") {
                 arr = arr.map(x => ({ key: showResult(x.key), proc: x.proc }))
@@ -203,17 +202,7 @@ const Analysis = () => {
                         <div>
                             {province.label}, {convertDate(dateFrom)} — {convertDate(dateTo)}
                         </div>
-                        {/* {data.map(x =>
-                        <div key={x.title}>
-                            <div>
-                                <div style={{ background: x.color, width: "20px", height: "20px" }}></div>
-                                {x.title} {Math.round((x.value + Number.EPSILON) * 100) / 100}%
-                            </div>
-                        </div>
-                    )}
-                    <PieChart animate={true} label={(labelRenderProps) => Math.round((labelRenderProps.dataEntry.percentage + Number.EPSILON) * 100) / 100 + "%"}
-                        data={data}
-                    /> */}
+                       
                         <AgChartsReact name="chart" options={data} />
 
                         <div className="input-group d-flex justify-content-end">
