@@ -194,6 +194,7 @@ const Analysis = () => {
                         </form>
                     </div>
                 </Box>
+                <Box m={2}>
                 <div className="container">
                     {data ? <Fragment>
                         <div className="pb-3 pt-3">
@@ -215,6 +216,7 @@ const Analysis = () => {
                         </div>
                     </Fragment> : null}
                 </div>
+                </Box>
                     </Box>
                 
             </Container>

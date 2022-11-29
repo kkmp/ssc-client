@@ -24,6 +24,8 @@ const UseCode = () => {
             
         }
         const errorCallback = (response) => {
+            toast.error("Błąd hasła", { position: toast.POSITION.BOTTOM_RIGHT });
+
             setError(response.data)
         }
         await request({ url: url, data: data, type: "POST" }, callback, errorCallback, false);

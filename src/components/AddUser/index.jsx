@@ -67,9 +67,6 @@ const AddUser = () => {
                 </div> : null}
 
                 <form onSubmit={handleSubmit}>
-                    <div className="pb-3 pt-3">
-                        <h2>Nowy użytkownik</h2>
-                    </div>
 
                     <div className="form-outline mb-4">
                         <label className="form-label" htmlFor="name">Imię</label>
