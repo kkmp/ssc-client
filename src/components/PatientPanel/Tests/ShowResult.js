@@ -8,6 +8,8 @@ const showResult = (result) => {
             return   <Chip label="Pozytywny" color="error" />
         case 'I':
             return   <Chip label="Nieroztrzygający" color="primary" />
+        case null:
+            return "Brak wyniku"
         default:
             return null
     }

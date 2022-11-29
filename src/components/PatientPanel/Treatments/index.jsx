@@ -7,8 +7,7 @@ import Popup from "../../Popup";
 import TreatmentDetails from "./TreatmentDetails";
 import getTokenData from "../../GetTokenData";
 import { HealthAndSafety } from "@mui/icons-material";
-import { Typography, Box } from "@mui/material";
-import { styled } from '@mui/material/styles';
+import { Typography, Box, Button, styled } from "@mui/material";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
@@ -16,6 +15,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import AddTreatment from "./AddTreatment";
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -27,15 +28,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
   }));
   
-  const StyledTableRow = styled(TableRow)(({ theme }) => ({
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.action.hover,
-    },
-    // hide last border
-    '&:last-child td, &:last-child th': {
-      border: 0,
-    },
-  }));
 
 const Treatments = (id) => {
     const [data, setData] = useState(null)
@@ -43,6 +35,8 @@ const Treatments = (id) => {
     const [pageNumber, setPageNumber] = useState(0)
     const [buttonPopup, setButtonPopup] = useState(false)
     const [selectedTestData, setSelectedTestData] = useState(null)
+    const [buttonAddPopup, setButtonAddPopup] = useState(false)
+
 
     useEffect(() => {
         handleChange()
@@ -90,9 +84,8 @@ const Treatments = (id) => {
                         <TableRow>
                             <StyledTableCell align="center">Data rozpoczęcia</StyledTableCell>
                             <StyledTableCell align="center">Data zakończenia</StyledTableCell>
-                            <StyledTableCell align="center">Stan pacjenta</StyledTableCell>
-                            <StyledTableCell align="center">Data wykonania</StyledTableCell>
-                            <StyledTableCell align="center">Wynik</StyledTableCell>
+                            <StyledTableCell align="center">Zachorowanie na COVID</StyledTableCell>
+                            <StyledTableCell align="center">Status</StyledTableCell>
                             <StyledTableCell align="center">Akcja</StyledTableCell>
                         </TableRow>
                         </TableHead>
@@ -104,13 +97,17 @@ const Treatments = (id) => {
                             : null
                         }
 
-                    {selectedTestData != null ?
-                        <Popup component={<TreatmentDetails onSubmit={handleChange} id={selectedTestData.id} showEdit={true}/>} trigger={buttonPopup} setTrigger={setButtonPopup} />
-                        : null}
-                        
                         </TableBody>
+                        <Button variant="outlined" size="normall" sx={{'margin':'10px'}} onClick={() => setButtonAddPopup(true)}>Dodaj leczenie</Button>
                     </Table>
                 </TableContainer>
+                
+                {selectedTestData != null ?
+                        <Popup component={<TreatmentDetails onSubmit={handleChange} id={selectedTestData.id} showEdit={true}/>} trigger={buttonPopup} setTrigger={setButtonPopup} />
+                        : null}
+
+                <Popup component={<AddTreatment onSubmit={handleChange} id={id} />} trigger={buttonAddPopup} setTrigger={setButtonAddPopup} />
+
                 
             </Fragment>
     );

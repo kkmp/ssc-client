@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import getTokenData from "../GetTokenData";
 import { Fragment } from "react";
-import {Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, Avatar, ListItemAvatar, AppBar} from "@mui/material";
+import {Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, Avatar, ListItemAvatar} from "@mui/material";
 import {Home, AdminPanelSettings, PersonAdd, PersonSearch, GroupAdd, Search, QueryStats, Help, Science, HealthAndSafety} from "@mui/icons-material";
 import './style.css'
 
@@ -33,7 +33,7 @@ const NavMenu = () => {
                     sx={{display:{xs: "none", sm: "block"}}}
                     //height="800px"
                     minHeight="800px"
-                    maxWidth={'500px'}
+                    maxWidth='300px'
                     
                     >
            <List>                 

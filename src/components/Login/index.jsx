@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Errors from "../Errors";
+import Error from "../Errors";
 import './signin.css'
 import request from "../Request";
 import { Container } from "@mui/system";
@@ -37,7 +37,7 @@ export default function Login() {
                 </section>
                 <div>
 
-                    {error ? error.map((err, idx) => <Errors message={err} key={idx} />): null}
+                    {error ? error.map((err, idx) => <Error message={err} key={idx} />): null}
                 </div>
                 <div className="col-4 offset-4">
                     <form onSubmit={handleSubmit}>

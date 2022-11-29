@@ -1,40 +1,31 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState } from "react";
 import { toast } from 'react-toastify';
 import request from "../../Request";
 import Errors from "../../Errors";
-import dateService from "../../DateService";
 import RequiredComponent from "../../RequiredComponent";
 
-const EditMedicalHistory = (medicalHistory) => {
+const AddMedicalHistory = (props) => {
     const [date, setDate] = useState("");
     const [description, setDescription] = useState("");
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const handleChange = () => {
-            setDate(dateService(medicalHistory.data.date))
-            setDescription(medicalHistory.data.description)
-        }
-        handleChange()
-    }, []);
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const url = '/api/MedicalHistory/editMedicalHistory'
+        const url = '/api/MedicalHistory/addMedicalHistory'
         const data = {
-            "id": medicalHistory.id,
             "date": date,
-            "description": description
+            "description": description,
+            "patientId": props.id.id
         }
         const callback = () => {
-            medicalHistory.onSubmit()
-            toast.success("Zapisano zmiany!", { position: toast.POSITION.BOTTOM_RIGHT });
+            props.onSubmit()
+            toast.success("Dodano wpis do historii medycznej", { position: toast.POSITION.BOTTOM_RIGHT });
             setError(null)
         }
         const errorCallback = (response) => {
             setError(response.data)
         }
-        await request({ url: url, data: data, type: "PUT" }, callback, errorCallback);
+        await request({ url: url, data: data, type: "POST" }, callback, errorCallback);
     };
 
     return (
@@ -42,7 +33,7 @@ const EditMedicalHistory = (medicalHistory) => {
             {error != null ? <Errors data={error} /> : null}
             <form onSubmit={handleSubmit}>
                 <div className="pb-3 pt-3">
-                    <h2>Edytuj wpis do historii choroby</h2>
+                    <h2>Nowy wpis do historii choroby</h2>
                 </div>
 
                 <div className="form-outline mb-4">
@@ -58,11 +49,11 @@ const EditMedicalHistory = (medicalHistory) => {
                 </div>
 
                 <div className="text-center">
-                    <button type="submit" className="btn btn-primary btn-block">Zapisz zmiany</button>
+                    <button type="submit" className="btn btn-primary btn-block">Dodaj wpis</button>
                 </div>
             </form>
         </Fragment>
     );
 }
 
-export default EditMedicalHistory
+export default AddMedicalHistory

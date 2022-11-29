@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
-import { Box, Button } from "@mui/material";
+import { Box, Button, TableCell } from "@mui/material";
+
 
 const Paginate = (props) => {
     const elementsPerPage = 3
@@ -65,11 +66,15 @@ const Paginate = (props) => {
                     {   dataToShow.map((element) => 
                         <Fragment key={element.key}>{element}</Fragment>
                     )}
-                
-                    <Box display={'flex'} alignItems={''}>
-                        <Button key="prev" disabled={prevDisabled} onClick={prevPage} ><KeyboardArrowLeft/></Button>
-                        <Button key="next" disabled={nextDisabled} onClick={nextPage} ><KeyboardArrowRight/></Button>
-                    </Box>
+                    
+                        <Box display={'flex'} justifyContent={'center'} margin={0.5}>
+                            <Button key="prev" disabled={prevDisabled} onClick={prevPage} ><KeyboardArrowLeft/></Button>
+                            <Button key="next" disabled={nextDisabled} onClick={nextPage} ><KeyboardArrowRight/></Button>
+
+                        </Box>
+                    
+                    
+
                 
                 </Fragment>
     );

@@ -6,6 +6,8 @@ import RequiredComponent from "../RequiredComponent";
 import '../Styles.css'
 import Popup from '../Popup'
 import CopyPassword from "./CopyPassword";
+import { Container, Box, Typography } from "@mui/material";
+import { GroupAdd } from "@mui/icons-material";
 
 const AddUser = () => {
     const [name, setName] = useState("");
@@ -44,6 +46,14 @@ const AddUser = () => {
     }
 
     return (<Fragment>
+        <Container>
+        <Box>
+            <Box p={3}>
+                <Typography variant="h6" marginBottom={"20px"}>
+                    <GroupAdd/> Dodaj użytkownika
+                </Typography>
+            </Box>
+        
         <div className="d-flex justify-content-center">
             <div className="form-container">
                 {error != null ? <Errors data={error} /> : null}
@@ -114,7 +124,9 @@ const AddUser = () => {
                 </form>
             </div>
         </div>
+        </Box>
         <Popup component={<CopyPassword data={data} />} trigger={buttonPopup} setTrigger={setButtonPopup} />
+        </Container>
     </Fragment>
     );
 }

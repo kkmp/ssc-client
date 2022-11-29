@@ -43,7 +43,6 @@ const Test = (test) => {
           <StyledTableCell align="center">
             {showResult(test.data.result)}
           </StyledTableCell>
-          <StyledTableCell align="center">{test.data.place}</StyledTableCell>
           <StyledTableCell align="center">
             <Button
               size="small"

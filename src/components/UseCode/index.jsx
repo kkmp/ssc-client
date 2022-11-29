@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import request from "../Request";
 import Errors from "../Errors";
 import { Container } from "@mui/system";
+import { toast } from 'react-toastify';
 
 const UseCode = () => {
     const [password, setPassword] = useState("");
@@ -18,13 +19,16 @@ const UseCode = () => {
             "code": code
         }
         const callback = () => {
+            toast.success("Hasło zostało zmienione", { position: toast.POSITION.BOTTOM_RIGHT });
             setError(null)
+            
         }
         const errorCallback = (response) => {
             setError(response.data)
         }
         await request({ url: url, data: data, type: "POST" }, callback, errorCallback, false);
     }
+
 
     return (
         <Container>

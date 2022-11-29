@@ -45,7 +45,6 @@ const Treatment = (treatment) => {
             {treatment.data.startDate}{" "}
           </StyledTableCell>
           <StyledTableCell align="center">{treatment.data.endDate}</StyledTableCell>
-          <StyledTableCell align="center"> SPRAWDZIC W BAZIE CZY JEST POLE JAK NIE USTALIC</StyledTableCell>
           <StyledTableCell align="center">{showCovidStatus()}</StyledTableCell>
           <StyledTableCell align="center">
              {treatment.data.treatmentStatus}

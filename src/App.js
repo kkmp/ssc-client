@@ -19,7 +19,7 @@ import NavMenu from "./components/NavMenu/NavMenu"
 import Unauthorized from "./components/Unauthorized"
 import ProtectedRoute from "./components/ProtectedRoute"
 import Analysis from "./components/Analysis"
-import {Box, Container, Stack} from  "@mui/material"
+import {Box, Stack} from  "@mui/material"
 import Footer from "./components/Footer/Footer"
 
 
@@ -57,7 +57,7 @@ function App(props) {
 
         <Route path="/addPatient" exact element={
           <ProtectedRoute roles={["Administrator", "Lekarz", "Laborant"]}>
-            <Box>
+            <Box bgcolor={'azure'}>
                 <NavBar />
                 <Stack direction="row">
                   <NavMenu />
@@ -139,7 +139,7 @@ function App(props) {
 
         <Route path="/addUser" exact element={
           <ProtectedRoute roles={["Administrator"]}>
-            <Box>
+            <Box bgcolor={'azure'}> 
                 <NavBar />
                 <Stack direction="row">
                   <NavMenu />

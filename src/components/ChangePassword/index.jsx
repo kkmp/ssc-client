@@ -1,12 +1,16 @@
 import React from "react";
 import { useState } from "react";
+import { toast } from 'react-toastify';
 import request from "../Request";
 import Errors from "../Errors"
 import { Container } from "@mui/material";
+import { redirect } from 'react-router-dom';
 
 const ChangePassword = () => {
     const [email, setEmail] = useState("");
     const [error, setError] = useState(null);
+
+    //let history = useHistory();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -15,9 +19,12 @@ const ChangePassword = () => {
             "email": email
         }
         const callback = () => {
+            toast.success("Link do zmiany hasła został wysłany! Sprawdź swoją skrzynkę pocztową.", { position: toast.POSITION.BOTTOM_RIGHT });
             setError(null)
+            return redirect("/Login")
         }
         const errorCallback = (response) => {
+
             setError(response.data)
         }
         await request({ url: url, data: data, type: "POST" }, callback, errorCallback, false);

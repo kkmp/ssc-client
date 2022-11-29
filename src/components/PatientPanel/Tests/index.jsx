@@ -5,7 +5,8 @@ import Errors from "../../Errors";
 import Paginate from "../../Paginate";
 import Popup from "../../Popup";
 import TestDetails from "./TestDetails";
-import { Typography, Box } from "@mui/material";
+import AddTest from "./AddTest";
+import { Typography, Box, Button } from "@mui/material";
 import { Vaccines } from "@mui/icons-material"
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
@@ -32,6 +33,7 @@ const Tests = (id) => {
     const [error, setError] = useState(null)
     const [pageNumber, setPageNumber] = useState(0)
     const [buttonPopup, setButtonPopup] = useState(false)
+    const [buttonAddPopup, setButtonAddPopup] = useState(false)
     const [selectedTestData, setSelectedTestData] = useState(null)
 
     useEffect(() => {
@@ -77,20 +79,22 @@ const Tests = (id) => {
                             <StyledTableCell align="center">Data zlecenia</StyledTableCell>
                             <StyledTableCell align="center">Data wykonania</StyledTableCell>
                             <StyledTableCell align="center">Wynik</StyledTableCell>
-                            <StyledTableCell align="center">Miejsce wykonania</StyledTableCell>
                             <StyledTableCell align="center">Akcja</StyledTableCell>
                         </TableRow>
                         </TableHead>
                         <TableBody>
-                            
+                        
                             {data != null ?
                         <Paginate pageNumberChanged={pageNumberChanged} pageNumber={pageNumber} data={data.map((test) => <Test key={test.id} data={test} onClick={onClick} />)} />
                         : null}
-                        
+
                         </TableBody>
+                        <Button variant="outlined" size="normall" sx={{'margin':'10px'}} onClick={() => setButtonAddPopup(true)}>Dodaj nowy test</Button>
+
                     </Table>
                 </TableContainer>
-                
+                <Popup component={<AddTest onSubmit={handleChange} id={id} />} trigger={buttonAddPopup} setTrigger={setButtonAddPopup} />
+
                 {selectedTestData != null ?
                     <Popup component={<TestDetails onSubmit={handleChange} id={selectedTestData.id} />} trigger={buttonPopup} setTrigger={setButtonPopup} />
                     : null}

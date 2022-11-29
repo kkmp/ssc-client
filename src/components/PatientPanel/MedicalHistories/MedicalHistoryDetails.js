@@ -2,11 +2,11 @@ import { Fragment, useState, useEffect } from "react"
 import Popup from 'reactjs-popup';
 import CustomPopup from "../../Popup";
 import UserAvatar from "../../User/UserAvatar";
-import { Person } from "react-bootstrap-icons";
+import { Person } from "@mui/icons-material";
 import EditMedicalHistory from "./EditMedicalHistory";
 import Errors from "../../Errors";
 import request from "../../Request";
-import { styled, Paper, Container, Stack, Typography, Button } from "@mui/material";
+import { Container, Stack, Typography, Button, Box } from "@mui/material";
 
 const MedicalHistoryDetails = (medicalHistory) => {
     const [buttonPopup, setButtonPopup] = useState(false)
@@ -31,31 +31,65 @@ const MedicalHistoryDetails = (medicalHistory) => {
         await request({ url: url, type: "GET" }, callback, errorCallback);
     }
 
-    const Item = styled (Paper)(({ theme }) => ({
-        backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "fbfbfbfb",
-        ...theme.typography.body2,
-        padding: theme.spacing(1),
-        textAlign: "center",
-        color: theme.palette.text.secondary,
-        borderRadius: "16px",
-        maxHeight: "200px",
-        display: "flex",
-        boxShadow: "1px 0px 21px 4px rgba(66, 68, 90, 1)",
-      }));
+
 
     return (
         error != null ? <Errors data={error} /> :
         <Container>
-            <p>Co to</p>
-            <Item>
+            
+            
+            <Box marginTop={2}>
+                    <Stack direction={"row"} spacing={{ xs: 4, sm: 5, md:10}}>
+                        <Box>
+                            <Stack direction={"column"} spacing={{ xs: 0.5, sm: 0.5, md: 0.5 }}>
+                                <Typography variant="body2" sx={{ mt: 1.5 }} textAlign={"center"}>
+                                    {" "}
+                                    Data dodania
+                                </Typography>
+                                <Typography variant="body1" textAlign={"center"}>
+                                    {" "}
+                                    {data.date}{" "}
+                                </Typography>
+                            </Stack>
+                            <Stack direction={"column"} spacing={{ xs: 0.5, sm: 0.5, md: 0.5 }}>
+                                <Typography variant="body2" sx={{ mt: 1.5 }} textAlign={"center"}>
+                                    {" "}
+                                    Dodano przez
+                                </Typography>
+                                <Typography variant="body1" textAlign={"center"}>
+                                    {" "}
+                                    <Popup trigger={<Button variant="text"><Person /></Button>} pinned position="bottom center">
+                                        <UserAvatar data={data} />
+                                    </Popup>
+                                </Typography>
+                            </Stack>
+                        </Box>  
+                    
+                    
+                    
+                        <Box>
+                            <Stack direction={"column"} spacing={{ xs: 0.5, sm: 0.5, md: 0.5 }}>
+                                <Typography variant="body2" sx={{ mt: 1.5 }} textAlign={"center"}>
+                                    {" "}
+                                    Opis
+                                </Typography>
+                                <Typography variant="body1" textAlign={"center"}>
+                                    {" "}
+                                    {data.description}{" "}
+                                </Typography>
+                            </Stack>
+                            
+                        </Box>
+                    </Stack>
+                </Box>
 
-                {data.date}  {data.description}
-                <Popup trigger={<button><Person /></button>} pinned position="bottom center">
-                    <UserAvatar data={data} />
-                </Popup>
-                <button onClick={() => setButtonPopup(true)}>Edytuj dane</button>
+                  
+                <Box marginTop={3}>
+                    <Button variant="outlined" onClick={() => setButtonPopup(true)}>Edytuj dane</Button>
+                </Box>
+                
                 <CustomPopup component={<EditMedicalHistory onSubmit={handleChange} id={medicalHistory.id} data={data}/>} trigger={buttonPopup} setTrigger={setButtonPopup} />
-            </Item>
+        
         </Container>
     );
 }

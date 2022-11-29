@@ -2,18 +2,16 @@ import React, { Fragment, useState, useEffect } from "react";
 import { toast } from 'react-toastify';
 import request from "../../Request";
 import Errors from "../../Errors";
-import dateService from "../../DateService";
 import Select from "react-select";
 import getDataSelect from "../../../data-control/getDataSelect";
-import RequiredComponent from "../../RequiredComponent";
-import LoadingComponent from "../../LoadingComponent";
 import AddPlace from "./AddPlace";
 import Popup from "../../Popup";
+import RequiredComponent from "../../RequiredComponent";
+import LoadingComponent from "../../LoadingComponent";
 
-const EditTest = (test) => {
+const AddTest = (props) => {
     const [testDate, setTestDate] = useState("");
     const [resultDate, setResultDate] = useState("");
-    const [result, setResult] = useState("");
     const [testType, setTestType] = useState("");
     const [testTypeOptions, setTestTypeOptions] = useState("");
     const [place, setPlace] = useState("");
@@ -29,23 +27,13 @@ const EditTest = (test) => {
         { value: 'I', label: "Nierozstrzygający" },
     ]
 
+    const [result, setResult] = useState(resultOptions[0]);
+
     useEffect(() => {
         handleChange()
     }, []);
 
     const handleChange = async () => {
-        setTestDate(dateService(test.data.testDate))
-        setResultDate(dateService(test.data.resultDate))
-        if (test.data.result !== null) {
-            var resultSearch = resultOptions.filter(item => item.value === test.data.result)
-            setResult(resultSearch[0])
-        }
-        else {
-            setResult(resultOptions[0])
-        }
-        setTestType({ value: test.data.testTypeId, label: test.data.testType })
-        setOrderNumber(test.data.orderNumber)
-
         const urlTestType = '/api/Data/getTestTypes'
         getDataSelect(urlTestType).then((result) => {
             setTestTypeOptions(result)
@@ -58,19 +46,28 @@ const EditTest = (test) => {
         }
         await request({ url: urlPlace, type: "GET" }, callback);
         setPlaceOptions(arr)
-        var placeSearch = arr.filter(item => item.value === test.data.placeId)
-        setPlace(placeSearch[0])
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const url = '/api/Test/editTest'
+        const url = '/api/Test/addTest'
         var data = {
-            "id": test.id,
             "testDate": testDate,
+            "orderNumber": orderNumber,
             "testTypeId": testType.value,
             "placeId": place.value,
+            "patientId": props.id.id
+        }
+
+        if (!testType) {
+            setError({ errors: { message: ["Aby zapisać, należy wybrać typ testu"] } })
+            return
+        }
+
+        if (!place) {
+            setError({ errors: { message: ["Aby zapisać, należy wybrać placówkę"] } })
+            return
         }
 
         if (result.value && resultDate) {
@@ -82,14 +79,14 @@ const EditTest = (test) => {
         }
 
         const callback = () => {
-            test.onSubmit()
-            toast.success("Zapisano zmiany!", { position: toast.POSITION.BOTTOM_RIGHT });
+            props.onSubmit()
+            toast.success("Dodano test", { position: toast.POSITION.BOTTOM_RIGHT });
             setError(null)
         }
         const errorCallback = (response) => {
             setError(response.data)
         }
-        await request({ url: url, data: data, type: "PUT" }, callback, errorCallback);
+        await request({ url: url, data: data, type: "POST" }, callback, errorCallback);
     };
 
     return (
@@ -97,12 +94,13 @@ const EditTest = (test) => {
             {error != null ? <Errors data={error} /> : null}
             <form onSubmit={handleSubmit}>
                 <div className="pb-3 pt-3">
-                    <h2>Edytuj test</h2>
+                    <h2>Nowy test</h2>
                 </div>
 
                 <div className="form-outline mb-4">
                     <label className="form-label" htmlFor="orderNumber">Numer testu</label>
-                    <input type="text" id="orderNumber" name="orderNumber" value={orderNumber} className="form-control" disabled={true} />
+                    <RequiredComponent />
+                    <input type="text" id="orderNumber" name="orderNumber" value={orderNumber} onChange={({ target }) => setOrderNumber(target.value)} required className="form-control" maxLength={12} minLength={12} placeholder={"Podaj numer testu"} />
                 </div>
 
                 <div className="form-outline mb-4">
@@ -154,7 +152,7 @@ const EditTest = (test) => {
                 </div>
 
                 <div className="text-center">
-                    <button type="submit" className="btn btn-primary btn-block">Zapisz zmiany</button>
+                    <button type="submit" className="btn btn-primary btn-block">Dodaj test</button>
                 </div>
             </form>
             <Popup component={<AddPlace onSubmit={handleChange} />} trigger={buttonPopup} setTrigger={setButtonPopup} />
@@ -162,4 +160,4 @@ const EditTest = (test) => {
     );
 }
 
-export default EditTest
+export default AddTest

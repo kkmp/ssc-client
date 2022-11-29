@@ -7,8 +7,7 @@ import Popup from "../../Popup";
 import MedicalHistoryDetails from "./MedicalHistoryDetails";
 import Paginate from "../../Paginate";
 import { MedicalInformation} from "@mui/icons-material"
-import { Typography, Box } from "@mui/material";
-import { styled } from '@mui/material/styles';
+import { Typography, Box, styled, Button } from "@mui/material";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
@@ -16,6 +15,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import AddMedicalHistory from "./AddMedicalHistory";
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -34,6 +35,8 @@ const MedicalHistories = (id) => {
     const [pageNumber, setPageNumber] = useState(0)
     const [buttonPopup, setButtonPopup] = useState(false)
     const [selectedTestData, setSelectedTestData] = useState(null)
+    const [buttonAddPopup, setButtonAddPopup] = useState(false)
+
 
     useEffect(() => {
         handleChange()
@@ -93,11 +96,14 @@ const MedicalHistories = (id) => {
                                 )} />
                             : null
                         }
-                        
                         </TableBody>
+
+                        <Button variant="outlined" size="normall" sx={{'margin':'10px'}} onClick={() => setButtonAddPopup(true)}>Dodaj nowy wpis</Button>
+
                     </Table>
                 </TableContainer>
                 
+                <Popup component={<AddMedicalHistory onSubmit={handleChange} id={id} />} trigger={buttonAddPopup} setTrigger={setButtonAddPopup} />
 
                 {selectedTestData != null ?
                     <Popup component={<MedicalHistoryDetails onSubmit={handleChange} id={selectedTestData.id} data={selectedTestData}/>} trigger={buttonPopup} setTrigger={setButtonPopup} />
