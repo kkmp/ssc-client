@@ -1,13 +1,12 @@
-import {AppBar, ListItem, styled, Toolbar, Typography, ListItemButton} from "@mui/material";
+import {AppBar, ListItem, styled, Toolbar, Typography, ListItemButton, Box} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Logo from '../img/Logo.png';
 import { HealthAndSafety, AdminPanelSettings, Science} from "@mui/icons-material";
 import { Avatar, Menu, MenuItem, IconButton } from "@mui/material";
 import getTokenData from "../GetTokenData";
 import ChangePasswordOnDemand from "./ChangePasswordOnDemand";
-
-
-
+import Popup from "../Popup";
+import { Fragment } from "react";
 
 const StyledToolbar = styled(Toolbar)({
     display:"flex",
@@ -15,12 +14,14 @@ const StyledToolbar = styled(Toolbar)({
     backgroundColor:"grey"
 })
 
-
-const NavBar = () => {
+const NavBar = (id) => {
+    const [data, setData] = useState(null)
     const [show, setShow] = useState(true)
     const [role, setRole] = useState("")
     const [anchorEl, setAnchorEl] = useState(false);
     const [showChangePassword, setShowChangePassword] = useState(false)
+    const [buttonAddPopup, setButtonAddPopup] = useState(false)
+    const [buttonPopup, setButtonPopup] = useState(false)
 
     const handleOnClick = async (e) => {
       e.preventDefault()
@@ -49,7 +50,7 @@ const NavBar = () => {
     }, [])
 
     return(
-        
+      <Fragment>
         <AppBar position="sticky">
             <StyledToolbar>
                 <img src={Logo} alt="logo" height={70}/>
@@ -97,7 +98,7 @@ const NavBar = () => {
                   <ListItemButton onClick={handleClose} href="/addPatient" >Dodaj pacjenta</ListItemButton>
                 </ListItem>
                 <ListItem>
-                  <ListItemButton onClick={handleOnClick} >{showChangePassword ? <ChangePasswordOnDemand onClose={handleOnClick} /> : ""}Zmień hasło</ListItemButton>
+                  <ListItemButton onClick={() => setButtonAddPopup(true)} >Zmień hasło</ListItemButton>
                 </ListItem>
                 <ListItem>
                   <MenuItem onClick={handleClose}  href="/Logout" >Wyloguj się</MenuItem> 
@@ -105,14 +106,14 @@ const NavBar = () => {
                 
               </Menu>
             </div>
-                
-               
-                
-                
-                
-                
+        
             </StyledToolbar>
+
         </AppBar>
+        <Box>
+          <Popup component={<ChangePasswordOnDemand id={id}/>} trigger={buttonAddPopup} setTrigger={setButtonAddPopup}/>
+        </Box>
+        </Fragment>
     );
 };
 export default NavBar;

@@ -52,11 +52,11 @@ const AddPlace = (props) => {
 
     return (
         <Fragment>
-            {error != null ? <Errors data={error} /> : null}
             <form onSubmit={handleSubmit}>
                 <div className="pb-3 pt-3">
                     <h2>Nowa placówka wykonująca testy</h2>
                 </div>
+                {error != null ? <Errors data={error} /> : null}
 
                 <div className="form-outline mb-4">
                     <label className="form-label" htmlFor="name">Nazwa placówki</label>

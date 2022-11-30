@@ -72,11 +72,11 @@ const EditTreatment = (treatment) => {
 
     return (
         <Fragment>
-            {error != null ? <Errors data={error} /> : null}
             <form onSubmit={handleSubmit}>
                 <div className="pb-3 pt-3">
                     <h2>Edytuj leczenie</h2>
                 </div>
+                {error != null ? <Errors data={error} /> : null}
 
                 <div className="form-outline mb-4">
                     <label className="form-label" htmlFor="startDate">Data i godzina rozpoczęcia leczenia</label>
