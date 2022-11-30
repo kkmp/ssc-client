@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import Error from "../Errors";
+import Errors from "../Errors";
+import Error from "../../Error";
 import './signin.css'
 import request from "../Request";
 import { Container } from "@mui/system";

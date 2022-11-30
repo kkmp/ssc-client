@@ -96,9 +96,7 @@ const AddPatient = () => {
             <div className="form-container">
                 {error != null ? <Errors data={error} /> : null}
                 <form onSubmit={handleSubmit}>
-                    <div className="pb-3 pt-3">
-                        <h2>Nowy pacjent</h2>
-                    </div>
+                    
                 <Stack direction={'row'} spacing={{ xs: 4, sm: 5, md:10}} justifyContent={'center'}>
                     <Box minWidth={'250px'}>
                         <div className="form-outline mb-4">

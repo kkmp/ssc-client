@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { toast } from 'react-toastify';
 import request from "../Request";
-import Errors from "../Errors"
+import Error from "../../Error";
 import { Container } from "@mui/material";
 import { redirect } from 'react-router-dom';
 
@@ -33,7 +33,7 @@ const ChangePassword = () => {
 
     return (
         <Container>
-            {error != null ? <Errors data={error} /> : null}
+            {error != null ? <Error data={error} /> : null}
 
             <div className="container pt-5 mt-5">
             <div className="row">
@@ -42,7 +42,7 @@ const ChangePassword = () => {
                     <h1>Zmiana hasła</h1>
                 </section>
                 <div>
-                    {error ? error.map((err, idx) => <Errors message={err} key={idx} />): null}
+                    {error ? error.map((err, idx) => <Error message={err} key={idx} />): null}
                 </div>
                 <div className="col-6 offset-3">
                     <form onSubmit={handleSubmit}>
