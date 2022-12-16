@@ -1,14 +1,14 @@
 import React from "react";
 import './Popup.css'
-import {Button} from "@mui/material"
-import {Close} from "@mui/icons-material"
 
 function Popup(props) {
     return (props.trigger) ? (
         <div className="popup">
             <div className="popup-inner">
-                <Button size="small" className="close-btn" onClick={() => props.setTrigger(false)}><Close/></Button>
-                {props.component}
+                <button type="button" className="btn-close" aria-label="Close" onClick={() => props.setTrigger(false)}></button>
+                <div className="scrollable">
+                    {props.component}
+                </div>
             </div>
         </div>
     ) : "";

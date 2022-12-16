@@ -36,6 +36,11 @@ const NavBar = (id) => {
       setAnchorEl(true);
     };
     
+    const handleLogout = () => {
+      setAnchorEl(null);
+      localStorage.clear();
+      window.location = '/login'
+    };
 
     useEffect(() => {
         var excetpions = ["login", "changePassword"];
@@ -101,7 +106,7 @@ const NavBar = (id) => {
                   <ListItemButton onClick={() => setButtonAddPopup(true)} >Zmień hasło</ListItemButton>
                 </ListItem>
                 <ListItem>
-                  <MenuItem onClick={handleClose}  href="/Logout" >Wyloguj się</MenuItem> 
+                  <MenuItem onClick={handleLogout}>Wyloguj się</MenuItem> 
                 </ListItem>
                 
               </Menu>
