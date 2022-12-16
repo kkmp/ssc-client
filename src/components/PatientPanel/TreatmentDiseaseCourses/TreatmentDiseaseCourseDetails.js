@@ -8,6 +8,7 @@ import Errors from "../../Errors"
 import CustomPopup from "../../Popup"
 import TreatmentDetails from "../Treatments/TreatmentDetails"
 import { Button, Stack, Typography, Box } from "@mui/material"
+import TreatmentAvatar from "../Treatments/TreatmentAvatar"
 
 const TreatmentDiseaseCourseDetails = (treatmentDiseaseCourse) => {
     const [buttonPopup, setButtonPopup] = useState(false)
@@ -100,7 +101,7 @@ const TreatmentDiseaseCourseDetails = (treatmentDiseaseCourse) => {
                                     Stan zdrowia pacjenta
                                 </Typography>
                                 <Popup trigger={<Button variant="text"><LocalHospital /></Button>} pinned position="bottom center">
-                                    <TreatmentDetails id={data.treatmentId} showEdit={false} />
+                                    <TreatmentAvatar id={data.treatmentId} showEdit={false} doNotShowUser={true}/>
                                 </Popup>
                             </Stack>
                         </Box>

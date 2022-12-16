@@ -59,7 +59,6 @@ const Treatment = (treatment) => {
             </Button>
           </StyledTableCell>
         </StyledTableRow>
-        {console.log(treatment.data)}
         </Fragment>
     );
 }

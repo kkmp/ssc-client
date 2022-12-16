@@ -7,10 +7,11 @@ import getTokenData from "../GetTokenData";
 import EditUser from "./EditUser";
 import { Box , Button, Typography, Container} from "@mui/material";
 import { AccountBox } from "@mui/icons-material";
+import Popup from "../Popup";
 
 const UserPanel = () => {
     const [data, setData] = useState([])
-    const [showEditUser, setShowEditUser] = useState(false)
+    const [buttonPopup, setButtonPopup] = useState(false)
     const [error, setError] = useState(null);
     const [changed, setChanged] = useState(false);
     const { id } = useParams()
@@ -31,11 +32,6 @@ const UserPanel = () => {
         handleChange()
     }, [changed]);
 
-    const handleOnClick = () => {
-        setShowEditUser(!showEditUser)
-        setChanged(!changed)
-    }
-
     const changeActivity = async () => {
         var activity = null
         if (data.isActive) {
@@ -43,23 +39,24 @@ const UserPanel = () => {
         } else {
             activity = "activate"
         }
-        const url = '/api/User/changeActivity/' + activity;
-        const newData = {
-            "id": id
-        }
+        const url = '/api/User/changeActivity/' + activity + '/' + id;
+
         const callback = () => {
             setError(null)
         }
         const errorCallback = (response) => {
             setError(response.data)
         }
-        await request({ url: url, data: newData, type: "PUT" }, callback, errorCallback);
+        await request({ url: url, type: "PUT" }, callback, errorCallback);
         setChanged(!changed)
     }
 
+    const handleChange = (event, newValue) => {
+        setChanged(!changed);
+      };
+
     return (
         error != null ? <Errors data={error} /> :
-
             <Container>
                 <Box bgcolor={"azure"} flex={5}>
                     <Fragment>
@@ -71,17 +68,14 @@ const UserPanel = () => {
                        
                 
                 <UserDetails data={data} />
+
                     <Box p={3} display={'flex'} justifyContent={'center'}>
-                        <Button sx={{'marginRight':'20px'}} variant='outlined' onClick={handleOnClick}>Edytuj dane</Button>
-                    
+                        <Button sx={{'marginRight':'20px'}} variant='outlined' onClick={() => setButtonPopup(true)}>Edytuj dane</Button>
+
                         <Button sx={{'marginLeft':'20px'}} variant='outlined' disabled={getTokenData().id === id} onClick={changeActivity}>{data.isActive ? "Dezaktywuj konto" : "Aktywuj konto"}</Button>
                         
                     </Box>
-                    <Box>
-                        {showEditUser ? <EditUser /> : ""}
-                    </Box>
-                
-                
+                    <Popup component={<EditUser data={data} onSubmit={handleChange} />} trigger={buttonPopup} setTrigger={setButtonPopup} />
                 
             </Fragment>
             </Box>

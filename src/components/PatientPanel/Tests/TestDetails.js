@@ -9,6 +9,7 @@ import Errors from "../../Errors";
 import EditTest from "./EditTest";
 import TreatmentDetails from "../Treatments/TreatmentDetails";
 import { Stack, Typography, Box, Button } from "@mui/material";
+import TreatmentAvatar from "../Treatments/TreatmentAvatar";
 
 const TestDetails = (test) => {
     const [buttonPopup, setButtonPopup] = useState(false)
@@ -124,7 +125,7 @@ const TestDetails = (test) => {
                                     Stan zdrowia pacjenta
                                 </Typography>
                                 <Popup trigger={<Button variant="text"><LocalHospital /></Button>} pinned position="bottom center">
-                                    <TreatmentDetails id={data.treatmentId} showEdit={false} />
+                                    <TreatmentAvatar id={data.treatmentId} showEdit={false} />
                                 </Popup>
                             </Stack>
                         </Box>
