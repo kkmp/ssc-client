@@ -44,7 +44,7 @@ const Treatments = (id) => {
 
     const handleChange = async () => {
         const token = getTokenData()
-        if (token == null || !(["Administrator", "Lekarz"].includes(token.role))) {
+        if (token == null || !(["Administrator", "Lekarz", "Laborant"].includes(token.role))) {
             return
         }
         

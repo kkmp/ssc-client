@@ -18,8 +18,7 @@ export default function Home() {
             if (tokenRead == null || tokenRead === '') {
                 window.location = '/login'
             }
-            const decoded = jwt(tokenRead);
-            const urlUser = '/api/User/userDetails/' + decoded["nameid"];
+            const urlUser = '/api/User/getMyDetails/';
             const callbackUser = (response) => {
                 setUserData(response.data)
             }
@@ -56,7 +55,7 @@ export default function Home() {
               </Typography>
 
               {addedPatients.map((patient) => (
-				<Box mb={5}>
+				<Box mb={5} key={patient["id"]}>
                 	<Patient key={patient["id"]} data={patient} />
 				</Box>
               ))}

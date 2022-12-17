@@ -67,7 +67,7 @@ const SearchUser = () => {
     }
 
     const loader = (
-        <div className="spinner-border" role="status"></div>
+        <div key={0} className="spinner-border" role="status"></div>
       );
 
 
@@ -215,13 +215,9 @@ const SearchUser = () => {
                 hasMore={hasMoreItems}
                 offset={5}
                 loader={loader}
-                endMessage='Nie ma więcej użytkowników'
-                dataLength={data.length}
-                
               >
                 
                 
-                {console.log(data)}
                 {data.length !== 0 ?
                 
                 <Fragment>
@@ -231,7 +227,7 @@ const SearchUser = () => {
                
                     {data.map((user) => (
                         
-                        <Box mb={5} >
+                        <Box mb={5} key={user.id}>
                             <User key={user.id} data={user} showButton={true}/>
                         </Box>
                           

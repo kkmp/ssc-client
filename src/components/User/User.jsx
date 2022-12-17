@@ -21,7 +21,7 @@ const User = (user) => {
 
     const showActivity = () => {
         if (user.data.isActive === true) {
-            return <Chip label="Aktywny" color="success" Height={'35px'}/>
+            return <Chip label="Aktywny" color="success" height={'35px'}/>
         }
         return <Chip label="Nieaktywny" color="error" />
     }
