@@ -47,7 +47,6 @@ const ChangePassword = () => {
                 <div className="col-6 offset-3">
                     <form onSubmit={handleSubmit}>
                         <div className="form-group pb-2">
-                            {/*Dlaczego nie jest wyswietlany blad?*/ console.log(error)}
                             <input type="email" name="email" className="form-control" placeholder="Email" value={email} onChange={({ target }) => setEmail(target.value)} required/>
                         </div>
                         <button type="submit" id="signin" className="btn btn-primary w-100 my-3 py-2">Wyślij Email</button>

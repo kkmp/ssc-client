@@ -76,8 +76,8 @@ const Tests = (id) => {
                         <TableRow>
                             <StyledTableCell align="center">Nr testu</StyledTableCell>
                             <StyledTableCell align="center">Typ</StyledTableCell>
-                            <StyledTableCell align="center">Data zlecenia</StyledTableCell>
                             <StyledTableCell align="center">Data wykonania</StyledTableCell>
+                            <StyledTableCell align="center">Data wyniku</StyledTableCell>
                             <StyledTableCell align="center">Wynik</StyledTableCell>
                             <StyledTableCell align="center">Akcja</StyledTableCell>
                         </TableRow>

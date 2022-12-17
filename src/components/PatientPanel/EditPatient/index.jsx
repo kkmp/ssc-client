@@ -89,7 +89,6 @@ const EditPatient = (props) => {
             {error != null ? <Errors data={error} /> : null}
             <Box>
             <form onSubmit={handleSubmit}>
-                <Stack  direction={"row"} spacing={{ xs: 4, sm: 5, md:10}}>
                 <Box>
                     <Stack direction={"column"} spacing={{ xs: 0.5, sm: 0.5, md: 0.5 }}>
                         <div className="pb-3 pt-3">
@@ -150,7 +149,7 @@ const EditPatient = (props) => {
 
                     <div className="form-outline mb-4">
                         <label className="form-label" htmlFor="phoneNumber">Numer telefonu</label>
-                        <input type="text" id="phoneNumber" name="phoneNumber" value={phoneNumber} onChange={({ target }) => setPhoneNumber(target.value)} maxLength={9} minLength={9} pattern={"^[0-9]{1,}$"} required className="form-control" placeholder="Podaj numer telefonu pacjenta" />
+                        <input type="text" id="phoneNumber" name="phoneNumber" value={phoneNumber} onChange={({ target }) => setPhoneNumber(target.value)} maxLength={9} minLength={9} pattern={"^[0-9]{1,}$"} className="form-control" placeholder="Podaj numer telefonu pacjenta" />
                     </div>
 
                     <div className="form-outline mb-4">
@@ -176,7 +175,6 @@ const EditPatient = (props) => {
                     </div>
                     </Stack>
                 </Box>
-                </Stack>
                 <div className="text-center">
                     <button type="submit" className="btn btn-primary btn-block">Zapisz zmiany</button>
                 </div>

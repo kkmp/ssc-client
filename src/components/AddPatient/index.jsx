@@ -145,7 +145,7 @@ const AddPatient = () => {
                     <Box minWidth={'250px'} >
                         <div className="form-outline mb-4">
                             <label className="form-label" htmlFor="phoneNumber">Numer telefonu</label>
-                            <input type="text" id="phoneNumber" name="phoneNumber" value={phoneNumber} onChange={({ target }) => setPhoneNumber(target.value)} maxLength={9} minLength={9} pattern={"^[0-9]{1,}$"} required className="form-control" placeholder="Podaj numer telefonu pacjenta" />
+                            <input type="text" id="phoneNumber" name="phoneNumber" value={phoneNumber} onChange={({ target }) => setPhoneNumber(target.value)} maxLength={9} minLength={9} pattern={"^[0-9]{1,}$"} className="form-control" placeholder="Podaj numer telefonu pacjenta" />
                         </div>
 
                         <div className="form-outline mb-4">
