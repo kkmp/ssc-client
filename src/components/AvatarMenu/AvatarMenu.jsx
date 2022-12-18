@@ -7,7 +7,6 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import Stack from '@mui/material/Stack';
-import UserAvatar from '../User/UserAvatar';
 
 export default function MenuListComposition() {
   const [open, setOpen] = React.useState(false);

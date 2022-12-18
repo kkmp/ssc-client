@@ -1,6 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
 import request from "../Request";
-import jwt from "jwt-decode";
 import Patient from "../Patient/Patient";
 import UserDetails from "../User/UserDetails";
 
@@ -46,7 +45,6 @@ export default function Home() {
             </Box>
           </Container>
           <UserDetails data={userData} />
-          {/*<button onClick={handleOnClick}>Zmień hasło</button>*/}
 
           <Container>
             <Box p={3}>

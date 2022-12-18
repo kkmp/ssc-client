@@ -10,8 +10,6 @@ const ChangePassword = () => {
     const [email, setEmail] = useState("");
     const [error, setError] = useState(null);
 
-    //let history = useHistory();
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         const url = '/api/ChangePassword/getCode'

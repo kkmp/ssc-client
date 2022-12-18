@@ -7,7 +7,7 @@ import Errors from "../Errors";
 import RequiredComponent from "../RequiredComponent";
 import LoadingComponent from "../LoadingComponent";
 import 'bootstrap/dist/css/bootstrap.css'
-import { Box, Container, Typography, styled, Stack} from "@mui/material";
+import { Box, Container, Typography, Stack} from "@mui/material";
 import { PersonAdd } from "@mui/icons-material";
 
 

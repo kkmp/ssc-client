@@ -44,7 +44,7 @@ const Tests = (id) => {
         const url = '/api/Test/showTests/' + id.id;
         const callback = (response) => {
             var newDataArr = response.data;
-            setData(null) //<-----------------------------
+            setData(null)
             setData(newDataArr)
             setError(null)
         }
@@ -101,10 +101,6 @@ const Tests = (id) => {
                     <Popup component={<TestDetails onSubmit={handleChange} id={selectedTestData.id} />} trigger={buttonPopup} setTrigger={setButtonPopup} />
                     : null}
 
-
-                
-                
-                
             </Fragment>
 
     );

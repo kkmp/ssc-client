@@ -1,11 +1,6 @@
 import jwtDecode from "jwt-decode";
 
 const getToken = () => {
-    // var excetpions = ["/login", "/changePassword/useCode/:code"];
-    // if (excetpions.indexOf(window.location.pathname) > -1) {
-    //   return;
-    // }
-
     const tokenRead = localStorage.getItem("token");
 
     if (tokenRead == null || tokenRead === "") {

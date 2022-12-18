@@ -105,9 +105,6 @@ const TreatmentDiseaseCourses = (id) => {
 
                 <Popup component={<AddTreatmentDiseaseCourse onSubmit={handleChange} id={id} />} trigger={buttonAddPopup} setTrigger={setButtonAddPopup} />
 
-
-                
-                
             </Fragment>
     );
 }

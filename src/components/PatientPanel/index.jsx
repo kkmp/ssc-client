@@ -9,7 +9,7 @@ import Treatments from "./Treatments";
 import TreatmentDiseaseCourses from "./TreatmentDiseaseCourses";
 import Errors from "../Errors";
 import Popup from "../Popup";
-import { Container, Box, Typography, Button } from "@mui/material";
+import { Container, Box, Typography } from "@mui/material";
 import { AccountBox, Edit } from "@mui/icons-material";
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
@@ -29,12 +29,7 @@ function TabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        // <Box sx={{ p: 3 }}>
-          // <Typography>{children}</Typography>
-          children
-        // </Box>
-      )}
+      {value === index && (children)}
     </div>
   );
 }
@@ -51,49 +46,6 @@ function a11yProps(index) {
     'aria-controls': `simple-tabpanel-${index}`,
   };
 }
-
-// export function BasicTabs() {
-//   const [value, setValue] = React.useState(0);
-//   const { id } = useParams()
-//   const [buttonPopup, setButtonPopup] = useState(false)
-
-//   const handleChange = (event, newValue) => {
-//     setValue(newValue);
-//   };
-
-//   return (
-//     <Box sx={{ width: '100%' }}>
-//       <Box m={3} sx={{ borderBottom: 1, borderColor: 'divider' }} display={'flex'} justifyContent={'left'}>
-//         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-//           <Tab icon={<Vaccines/>} label="Testy" {...a11yProps(0)} />
-//           <Tab icon={<MedicalInformation/>} label="Historia choroby" {...a11yProps(1)} />
-//           <Tab icon={<HealthAndSafety/>} label="Leczenie" {...a11yProps(2)} />
-//           <Tab icon={<HeartBroken/>} label="Powikłania" {...a11yProps(2)} />
-//           <Tab icon={<Edit/>} label="Edytuj dane" onClick={() => setButtonPopup(true)}/>
-//           {/*<Button variant='filled' onClick={() => setButtonPopup(true)}>Edytuj dane</Button>*/}
-//         </Tabs>
-//       </Box>
-//       <TabPanel value={value} index={0}>
-//         <Tests id={id}/>
-//       </TabPanel>
-//       <TabPanel value={value} index={1}>
-//         <MedicalHistories id={id}/>
-//       </TabPanel>
-//       <TabPanel value={value} index={2}>
-//         <Treatments id={id} />
-//       </TabPanel>
-//       <TabPanel value={value} index={3}>
-//         <TreatmentDiseaseCourses id={id}/>
-//       </TabPanel>
-//       <Popup component={<EditPatient onSubmit={handleChange} />} trigger={buttonPopup} setTrigger={setButtonPopup} />
-
-
-//     </Box>
-//   );
-// }
-
-
-
 
 const PatientPanel = () => {
   const [data, setData] = useState(null)
@@ -138,18 +90,13 @@ const PatientPanel = () => {
             <Box p={3}>
               <PatientDetails data={data} />
             </Box>
-            {/* <Box> */}
-              {/* <Box sx={{ width: '100%' }}> */}
-                {/* <Box m={3} sx={{ borderBottom: 1, borderColor: 'divider' }} display={'flex'} justifyContent={'left'}> */}
                   <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
                     <Tab icon={<Vaccines />} label="Testy" {...a11yProps(0)} />
                     <Tab icon={<MedicalInformation />} label="Historia choroby" {...a11yProps(1)} />
                     <Tab icon={<HealthAndSafety />} label="Leczenie" {...a11yProps(2)} />
                     <Tab icon={<HeartBroken />} label="Powikłania" {...a11yProps(2)} />
                     <Tab icon={<Edit />} label="Edytuj dane" onClick={() => setButtonPopup(true)} />
-                    {/*<Button variant='filled' onClick={() => setButtonPopup(true)}>Edytuj dane</Button>*/}
                   </Tabs>
-                {/* </Box> */}
                 <TabPanel value={value} index={0}>
                   <Tests id={id} />
                 </TabPanel>
@@ -163,13 +110,7 @@ const PatientPanel = () => {
                   <TreatmentDiseaseCourses id={id} />
                 </TabPanel>
                 <Popup component={<EditPatient onSubmit={handleChange1} />} trigger={buttonPopup} setTrigger={setButtonPopup} />
-
-
-              {/* </Box> */}
-            {/* </Box> */}
           </Container>
-
-
         </Fragment> : <div className="spinner-border" role="status"></div>
 
   );

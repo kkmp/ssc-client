@@ -6,7 +6,6 @@ import UserAvatar from "../../User/UserAvatar"
 import EditTreatmentDiseaseCourse from "./EditTreatmentDiseaseCourse"
 import Errors from "../../Errors"
 import CustomPopup from "../../Popup"
-import TreatmentDetails from "../Treatments/TreatmentDetails"
 import { Button, Stack, Typography, Box } from "@mui/material"
 import TreatmentAvatar from "../Treatments/TreatmentAvatar"
 
@@ -37,8 +36,8 @@ const TreatmentDiseaseCourseDetails = (treatmentDiseaseCourse) => {
         error != null ? <Errors data={error} /> :
             <Fragment>
 
-<Box marginTop={2}>
-                    <Stack direction={"row"} spacing={{ xs: 4, sm: 5, md:10}}>
+                <Box marginTop={2}>
+                    <Stack direction={"row"} spacing={{ xs: 4, sm: 5, md: 10 }}>
                         <Box>
                             <Stack direction={"column"} spacing={{ xs: 0.5, sm: 0.5, md: 0.5 }}>
                                 <Typography variant="body2" sx={{ mt: 1.5 }} textAlign={"center"}>
@@ -61,7 +60,7 @@ const TreatmentDiseaseCourseDetails = (treatmentDiseaseCourse) => {
                                     {" "}
                                 </Typography>
                             </Stack>
-                        </Box>                      
+                        </Box>
                         <Box>
                             <Stack direction={"column"} spacing={{ xs: 0.5, sm: 0.5, md: 0.5 }}>
                                 <Typography variant="body2" sx={{ mt: 1.5 }} textAlign={"center"}>
@@ -84,10 +83,10 @@ const TreatmentDiseaseCourseDetails = (treatmentDiseaseCourse) => {
                                 </Typography>
                             </Stack>
                         </Box>
-                        
+
                         <Box>
                             <Stack direction={"column"} spacing={{ xs: 0.5, sm: 0.5, md: 0.5 }}>
-                                <Typography variant="body2" sx={{ mt: 1.5 }}  textAlign={"center"} >
+                                <Typography variant="body2" sx={{ mt: 1.5 }} textAlign={"center"} >
                                     {" "}
                                     Dodano przez
                                 </Typography>
@@ -101,13 +100,13 @@ const TreatmentDiseaseCourseDetails = (treatmentDiseaseCourse) => {
                                     Stan zdrowia pacjenta
                                 </Typography>
                                 <Popup trigger={<Button variant="text"><LocalHospital /></Button>} pinned position="bottom center">
-                                    <TreatmentAvatar id={data.treatmentId} showEdit={false} doNotShowUser={true}/>
+                                    <TreatmentAvatar id={data.treatmentId} showEdit={false} doNotShowUser={true} />
                                 </Popup>
                             </Stack>
                         </Box>
                     </Stack>
-                </Box> 
-                
+                </Box>
+
                 <Button variant='outlined' onClick={() => setButtonPopup(true)}>Edytuj dane</Button>
                 <CustomPopup component={<EditTreatmentDiseaseCourse id={treatmentDiseaseCourse.id} data={data} onSubmit={handleChange} />} trigger={buttonPopup} setTrigger={setButtonPopup} />
             </Fragment>

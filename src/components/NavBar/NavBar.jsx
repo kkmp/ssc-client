@@ -1,8 +1,8 @@
-import { AppBar, ListItem, styled, Toolbar, Typography, ListItemButton, Box } from "@mui/material";
+import { AppBar, ListItem, styled, Toolbar, Typography, ListItemButton } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Logo from '../img/Logo.png';
 import { HealthAndSafety, AdminPanelSettings, Science } from "@mui/icons-material";
-import { Avatar, Menu, MenuItem, IconButton, Button } from "@mui/material";
+import { Avatar, IconButton } from "@mui/material";
 import getTokenData from "../GetTokenData";
 import ChangePasswordOnDemand from "./ChangePasswordOnDemand";
 import Popup from "../Popup";
@@ -17,29 +17,11 @@ const StyledToolbar = styled(Toolbar)({
 })
 
 const NavBar = (id) => {
-  // const [data, setData] = useState(null)
   const [show, setShow] = useState(true)
   const [role, setRole] = useState("")
-  // const [anchorEl, setAnchorEl] = useState(false);
-  // const [showChangePassword, setShowChangePassword] = useState(false)
   const [buttonAddPopup, setButtonAddPopup] = useState(false)
-  // const [buttonPopup, setButtonPopup] = useState(false)
-
-  // const handleOnClick = async (e) => {
-  //   e.preventDefault()
-  //   setShowChangePassword(!showChangePassword)
-  // }
-
-  // const handleClose = () => {
-  //   setAnchorEl(null);
-  // };
-
-  // const handleMenu = () => {
-  //   setAnchorEl(true);
-  // };
 
   const handleLogout = () => {
-    //setAnchorEl(null);
     localStorage.clear();
     window.location = '/login'
   };
@@ -64,54 +46,7 @@ const NavBar = (id) => {
           <Typography variant="h6" textTransform={'uppercase'} sx={{ display: { xs: "none", sm: "block" } }}>
             Covid System
           </Typography>
-          {/*<AvatarMenu/>* Menu lista po klikniecu w awatar na nabarze */}
           <div>
-            {/* <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleMenu}
-              color="inherit"
-            >
-              {role === "Administrator" ?
-                <Avatar>
-                  <AdminPanelSettings />
-                </Avatar> : role === "Laborant" ?
-                  <Avatar>
-                    <Science />
-                  </Avatar> : role === "Lekarz" ?
-                    <Avatar>
-                      <HealthAndSafety />
-                    </Avatar> : null
-              }
-            </IconButton> */}
-            {/* <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
-                <ListItem>
-                  <ListItemButton onClick={handleClose} href="/addPatient" >Dodaj pacjenta</ListItemButton>
-                </ListItem>
-                <ListItem>
-                  <ListItemButton onClick={() => setButtonAddPopup(true)} >Zmień hasło</ListItemButton>
-                </ListItem>
-                <ListItem>
-                <ListItemButton onClick={handleLogout}>Wyloguj się</ListItemButton>
-                </ListItem>
-                
-              </Menu> */}
 
             <PopupState variant="popover" popupId="demo-popup-popover">
               {(popupState) => (

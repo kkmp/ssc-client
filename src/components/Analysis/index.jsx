@@ -3,7 +3,6 @@ import { Fragment, useEffect, useState } from "react";
 import { Container, Box, Typography } from "@mui/material";
 import { AgChartsReact } from "ag-charts-react";
 import request from "../Request";
-//import randomColor from "randomcolor";
 import Select from "react-select";
 import LoadingComponent from "../LoadingComponent";
 import getDataSelect from "../../data-control/getDataSelect";

@@ -6,7 +6,6 @@ import { Person, LocalHospital } from "@mui/icons-material";
 import request from "../../Request";
 import Errors from "../../Errors";
 import EditTest from "./EditTest";
-import TreatmentDetails from "../Treatments/TreatmentDetails";
 import { Stack, Typography, Box, Button } from "@mui/material";
 import TreatmentAvatar from "../Treatments/TreatmentAvatar";
 import { showResultChip } from "./ShowResultChip";

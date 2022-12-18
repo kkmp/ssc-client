@@ -31,7 +31,6 @@ const NavMenu = () => {
                     flex={1}
                     p={2}
                     sx={{display:{xs: "none", sm: "block"}}}
-                    //height="800px"
                     minHeight="800px"
                     maxWidth='300px'
                     

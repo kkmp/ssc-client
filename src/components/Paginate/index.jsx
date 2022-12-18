@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
-import { Box, Button, TableCell } from "@mui/material";
+import { Box, Button } from "@mui/material";
 
 
 const Paginate = (props) => {
@@ -26,16 +26,15 @@ const Paginate = (props) => {
             setPrevDisabled(false)
         }
 
-        let lastPage =  Math.ceil(1.0 * data.length / elementsPerPage) - 1
+        let lastPage = Math.ceil(1.0 * data.length / elementsPerPage) - 1
         if (pageNumber === lastPage) {
             setNextDisabled(true)
         }
         else {
             setNextDisabled(false)
         }
-        
-        if(data.length === 0)
-        {
+
+        if (data.length === 0) {
             setPrevDisabled(true)
             setNextDisabled(true)
         }
@@ -51,37 +50,32 @@ const Paginate = (props) => {
     }
 
     const nextPage = () => {
-        let lastPage =  Math.ceil(1.0 * data.length / elementsPerPage) - 1
-        if(pageNumber < lastPage)
-        {
+        let lastPage = Math.ceil(1.0 * data.length / elementsPerPage) - 1
+        if (pageNumber < lastPage) {
             setPageNumber(pageNumber + 1)
         }
     }
 
 
     return (
-                <Fragment>
-                
-                    {/* wiersze dla elementów testy/ historia chorby/ leczenie/ powiklania */}
-                    {   dataToShow.map((element) => 
-                        <Fragment key={element.key}>{element}</Fragment>
-                    )}
-                    
-                <tr><td>
+        <Fragment>
+
+            {/* wiersze dla elementów testy/ historia chorby/ leczenie/ powiklania */}
+            {dataToShow.map((element) =>
+                <Fragment key={element.key}>{element}</Fragment>
+            )}
+
+            <tr><td>
                 <Box display={'flex'} justifyContent={'center'} margin={0.5}>
-                            <Button key="prev" disabled={prevDisabled} onClick={prevPage} ><KeyboardArrowLeft/></Button>
-                            <Button key="next" disabled={nextDisabled} onClick={nextPage} ><KeyboardArrowRight/></Button>
+                    <Button key="prev" disabled={prevDisabled} onClick={prevPage} ><KeyboardArrowLeft /></Button>
+                    <Button key="next" disabled={nextDisabled} onClick={nextPage} ><KeyboardArrowRight /></Button>
 
-                        </Box>
-                </td>
-          
-                </tr>
-                       
-                    
-                    
+                </Box>
+            </td>
 
-                
-                </Fragment>
+            </tr>
+
+        </Fragment>
     );
 }
 
