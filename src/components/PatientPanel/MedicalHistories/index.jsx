@@ -75,6 +75,7 @@ const MedicalHistories = (id) => {
             <Fragment>
 
                 <Box>
+                    <br/>
                     <Typography variant="h6" mb={5}><MedicalInformation/>Historia choroby</Typography> 
                 </Box>
 
@@ -98,9 +99,9 @@ const MedicalHistories = (id) => {
                         }
                         </TableBody>
 
-                        <Button variant="outlined" size="normall" sx={{'margin':'10px'}} onClick={() => setButtonAddPopup(true)}>Dodaj nowy wpis</Button>
-
                     </Table>
+                    <Button variant="outlined" size="normall" sx={{'margin':'10px'}} onClick={() => setButtonAddPopup(true)}>Dodaj nowy wpis</Button>
+
                 </TableContainer>
                 
                 <Popup component={<AddMedicalHistory onSubmit={handleChange} id={id} />} trigger={buttonAddPopup} setTrigger={setButtonAddPopup} />

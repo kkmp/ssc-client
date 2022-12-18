@@ -42,6 +42,11 @@ const request = async (params, callback = null, errorCallback = null, authorized
             localStorage.removeItem("token");
             window.location = '/login'
         }
+
+        if (e.response.status === 403) {
+            window.location = '/unauthorized'
+        }
+
         else if (e.response.status >= 300 && e.response.status <= 500) {
             if (errorCallback != null) {
                 errorCallback(e.response);

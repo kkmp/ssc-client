@@ -71,6 +71,7 @@ const TreatmentDiseaseCourses = (id) => {
         error != null ? <Errors data={error} /> :
             <Fragment>
                  <Box>
+                    <br/>
                     <Typography variant="h6" mb={5}><HeartBroken/>Powikłania</Typography> 
                 </Box>
 
@@ -92,8 +93,9 @@ const TreatmentDiseaseCourses = (id) => {
                         }
 
                         </TableBody>
-                        <Button variant="outlined" size="normall" sx={{'margin':'10px'}} onClick={() => setButtonAddPopup(true)}>Dodaj powikłanie</Button>
                     </Table>
+                    <Button variant="outlined" size="normall" sx={{'margin':'10px'}} onClick={() => setButtonAddPopup(true)}>Dodaj powikłanie</Button>
+
                 </TableContainer>
                 {
                     selectedTestData != null ?

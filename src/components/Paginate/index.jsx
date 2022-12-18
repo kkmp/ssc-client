@@ -67,11 +67,16 @@ const Paginate = (props) => {
                         <Fragment key={element.key}>{element}</Fragment>
                     )}
                     
-                        <Box display={'flex'} justifyContent={'center'} margin={0.5}>
+                <tr><td>
+                <Box display={'flex'} justifyContent={'center'} margin={0.5}>
                             <Button key="prev" disabled={prevDisabled} onClick={prevPage} ><KeyboardArrowLeft/></Button>
                             <Button key="next" disabled={nextDisabled} onClick={nextPage} ><KeyboardArrowRight/></Button>
 
                         </Box>
+                </td>
+          
+                </tr>
+                       
                     
                     
 

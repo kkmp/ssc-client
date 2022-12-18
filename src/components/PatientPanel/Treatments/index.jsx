@@ -75,6 +75,7 @@ const Treatments = (id) => {
             <Fragment>
 
                 <Box>
+                    <br/>
                     <Typography variant="h6" mb={5}><HealthAndSafety/>Leczenie</Typography> 
                 </Box>
 
@@ -98,8 +99,9 @@ const Treatments = (id) => {
                         }
 
                         </TableBody>
-                        <Button variant="outlined" size="normall" sx={{'margin':'10px'}} onClick={() => setButtonAddPopup(true)}>Dodaj leczenie</Button>
                     </Table>
+                    <Button variant="outlined" size="normall" sx={{'margin':'10px'}} onClick={() => setButtonAddPopup(true)}>Dodaj leczenie</Button>
+
                 </TableContainer>
                 
                 {selectedTestData != null ?

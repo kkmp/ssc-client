@@ -56,7 +56,7 @@ const UserPanel = () => {
       };
 
     return (
-        error != null ? <Errors data={error} /> :
+        error != null ? <Box p={3}><Errors data={error} /></Box> :
             <Container>
                 <Box bgcolor={"azure"} flex={5}>
                     <Fragment>

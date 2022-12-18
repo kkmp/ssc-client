@@ -30,9 +30,10 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
+        // <Box sx={{ p: 3 }}>
+          // <Typography>{children}</Typography>
+          children
+        // </Box>
       )}
     </div>
   );
@@ -125,7 +126,7 @@ const PatientPanel = () => {
   }, []);
 
   return (
-    error != null ? <Errors data={error} /> :
+    error != null ?  <Box p={3}><Errors data={error} /></Box> :
       data != null ?
         <Fragment>
           <Container>
@@ -137,9 +138,9 @@ const PatientPanel = () => {
             <Box p={3}>
               <PatientDetails data={data} />
             </Box>
-            <Box>
-              <Box sx={{ width: '100%' }}>
-                <Box m={3} sx={{ borderBottom: 1, borderColor: 'divider' }} display={'flex'} justifyContent={'left'}>
+            {/* <Box> */}
+              {/* <Box sx={{ width: '100%' }}> */}
+                {/* <Box m={3} sx={{ borderBottom: 1, borderColor: 'divider' }} display={'flex'} justifyContent={'left'}> */}
                   <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
                     <Tab icon={<Vaccines />} label="Testy" {...a11yProps(0)} />
                     <Tab icon={<MedicalInformation />} label="Historia choroby" {...a11yProps(1)} />
@@ -148,7 +149,7 @@ const PatientPanel = () => {
                     <Tab icon={<Edit />} label="Edytuj dane" onClick={() => setButtonPopup(true)} />
                     {/*<Button variant='filled' onClick={() => setButtonPopup(true)}>Edytuj dane</Button>*/}
                   </Tabs>
-                </Box>
+                {/* </Box> */}
                 <TabPanel value={value} index={0}>
                   <Tests id={id} />
                 </TabPanel>
@@ -164,8 +165,8 @@ const PatientPanel = () => {
                 <Popup component={<EditPatient onSubmit={handleChange1} />} trigger={buttonPopup} setTrigger={setButtonPopup} />
 
 
-              </Box>
-            </Box>
+              {/* </Box> */}
+            {/* </Box> */}
           </Container>
 
 

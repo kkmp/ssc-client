@@ -3,13 +3,13 @@ import Popup from 'reactjs-popup';
 import CustomPopup from "../../Popup";
 import UserAvatar from "../../User/UserAvatar";
 import { Person, LocalHospital } from "@mui/icons-material";
-import showResult from "./ShowResult";
 import request from "../../Request";
 import Errors from "../../Errors";
 import EditTest from "./EditTest";
 import TreatmentDetails from "../Treatments/TreatmentDetails";
 import { Stack, Typography, Box, Button } from "@mui/material";
 import TreatmentAvatar from "../Treatments/TreatmentAvatar";
+import { showResultChip } from "./ShowResultChip";
 
 const TestDetails = (test) => {
     const [buttonPopup, setButtonPopup] = useState(false)
@@ -105,7 +105,7 @@ const TestDetails = (test) => {
                                 </Typography>
                                 <Typography variant="body1" textAlign={"center"}>
                                     {" "}
-                                    {showResult(data.result)}{" "}
+                                    {showResultChip(data.result)}{" "}
                                 </Typography>
                             </Stack>
                         </Box>

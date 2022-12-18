@@ -1,9 +1,9 @@
 import { Fragment } from "react"
-import showResult from "./ShowResult"
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
+import { showResultChip } from "./ShowResultChip";
 
 
 
@@ -41,7 +41,7 @@ const Test = (test) => {
             {test.data.resultDate}
           </StyledTableCell>
           <StyledTableCell align="center">
-            {showResult(test.data.result)}
+            {showResultChip(test.data.result)}
           </StyledTableCell>
           <StyledTableCell align="center">
             <Button

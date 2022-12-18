@@ -70,7 +70,6 @@ const AddPatient = () => {
         const callback = () => {
             toast.success("Pacjent został dodany!", { position: toast.POSITION.BOTTOM_RIGHT });
             setError(null)
-            window.location("/Home")
         }
         const errorCallback = (response) => {
             setError(response.data)

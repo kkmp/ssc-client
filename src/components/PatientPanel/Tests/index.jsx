@@ -67,7 +67,8 @@ const Tests = (id) => {
         error != null ? <Errors data={error} /> :
             <Fragment>
                 <Box>
-                <Typography variant="h6" mb={5}><Vaccines/>Testy</Typography> 
+                    <br/>
+                    <Typography variant="h6" mb={5}><Vaccines/>Testy</Typography>
                 </Box>
 
                 <TableContainer component={Paper} sx={{borderRadius:'16px',  boxShadow: "1px 0px 21px 4px rgba(66, 68, 90, 1)"}}>
@@ -89,9 +90,10 @@ const Tests = (id) => {
                         : null}
 
                         </TableBody>
-                        <Button variant="outlined" size="normall" sx={{'margin':'10px'}} onClick={() => setButtonAddPopup(true)}>Dodaj nowy test</Button>
 
                     </Table>
+                    <Button variant="outlined" size="normall" sx={{'margin':'10px'}} onClick={() => setButtonAddPopup(true)}>Dodaj nowy test</Button>
+
                 </TableContainer>
                 <Popup component={<AddTest onSubmit={handleChange} id={id} />} trigger={buttonAddPopup} setTrigger={setButtonAddPopup} />
 
