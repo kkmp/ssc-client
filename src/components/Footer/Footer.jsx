@@ -1,17 +1,14 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary">
-      {'Copyright © '}
-      Karol Łazaruk i Krystian Łęczycki
-      {' '}
-      {new Date().getFullYear()}
-      {'.'}
+      {"Copyright © "}
+      Karol Łazaruk i Krystian Łęczycki {new Date().getFullYear()}
+      {"."}
     </Typography>
   );
 }
@@ -20,8 +17,8 @@ export default function StickyFooter() {
   return (
     <Box
       sx={{
-        display: 'flex',
-        flexDirection: 'column'
+        display: "flex",
+        flexDirection: "column",
       }}
     >
       <Box
@@ -30,7 +27,7 @@ export default function StickyFooter() {
           py: 3,
           px: 2,
           backgroundColor: (theme) =>
-            theme.palette.mode === 'light'
+            theme.palette.mode === "light"
               ? theme.palette.grey[400]
               : theme.palette.grey[800],
         }}

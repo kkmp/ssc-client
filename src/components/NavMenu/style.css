@@ -1,7 +1,10 @@
-.navMenu{
-    filter: drop-shadow(4px 4px 16px rgba(128, 80, 80, 0.25));
-    border-radius: 0px 36px 36px 0px;
-    flex: none;
-    background: linear-gradient(00.00deg, rgba(150, 61, 214, 0.456) -18.04%, rgba(91, 141, 218, 0.81) 81.96%);
-
+.navMenu {
+  filter: drop-shadow(4px 4px 16px rgba(128, 80, 80, 0.25));
+  border-radius: 0px 36px 36px 0px;
+  flex: none;
+  background: linear-gradient(
+    00deg,
+    rgba(150, 61, 214, 0.456) -18.04%,
+    rgba(91, 141, 218, 0.81) 81.96%
+  );
 }

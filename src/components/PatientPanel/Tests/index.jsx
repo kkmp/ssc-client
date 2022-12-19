@@ -7,104 +7,129 @@ import Popup from "../../Popup";
 import TestDetails from "./TestDetails";
 import AddTest from "./AddTest";
 import { Typography, Box, Button } from "@mui/material";
-import { Vaccines } from "@mui/icons-material"
-import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import { Vaccines } from "@mui/icons-material";
+import { styled } from "@mui/material/styles";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
-    },
-    [`&.${tableCellClasses.body}`]: {
-      fontSize: 14,
-    },
-  }));
-  
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
 
 const Tests = (id) => {
-    const [data, setData] = useState(null)
-    const [error, setError] = useState(null)
-    const [pageNumber, setPageNumber] = useState(0)
-    const [buttonPopup, setButtonPopup] = useState(false)
-    const [buttonAddPopup, setButtonAddPopup] = useState(false)
-    const [selectedTestData, setSelectedTestData] = useState(null)
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  const [pageNumber, setPageNumber] = useState(0);
+  const [buttonPopup, setButtonPopup] = useState(false);
+  const [buttonAddPopup, setButtonAddPopup] = useState(false);
+  const [selectedTestData, setSelectedTestData] = useState(null);
 
-    useEffect(() => {
-        handleChange()
-    }, []);
+  useEffect(() => {
+    handleChange();
+  }, []);
 
-    const handleChange = async () => {
-        const url = '/api/Test/showTests/' + id.id;
-        const callback = (response) => {
-            var newDataArr = response.data;
-            setData(null)
-            setData(newDataArr)
-            setError(null)
-        }
-        const errorCallback = (response) => {
-            setError(response.data)
-        }
-        await request({ url: url, type: "GET" }, callback, errorCallback);
-    }
+  const handleChange = async () => {
+    const url = "/api/Test/showTests/" + id.id;
+    const callback = (response) => {
+      var newDataArr = response.data;
+      setData(null);
+      setData(newDataArr);
+      setError(null);
+    };
+    const errorCallback = (response) => {
+      setError(response.data);
+    };
+    await request({ url: url, type: "GET" }, callback, errorCallback);
+  };
 
-    const onClick = (data) => {
-        setSelectedTestData(data)
-        setButtonPopup(true)
-    }
+  const onClick = (data) => {
+    setSelectedTestData(data);
+    setButtonPopup(true);
+  };
 
-    const pageNumberChanged = (page) => {
-        setPageNumber(page)
-    }
+  const pageNumberChanged = (page) => {
+    setPageNumber(page);
+  };
 
-    return (
-        error != null ? <Errors data={error} /> :
-            <Fragment>
-                <Box>
-                    <br/>
-                    <Typography variant="h6" mb={5}><Vaccines/>Testy</Typography>
-                </Box>
+  return error != null ? (
+    <Errors data={error} />
+  ) : (
+    <Fragment>
+      <Box>
+        <br />
+        <Typography variant="h6" mb={5}>
+          <Vaccines />
+          Testy
+        </Typography>
+      </Box>
 
-                <TableContainer component={Paper} sx={{borderRadius:'16px',  boxShadow: "1px 0px 21px 4px rgba(66, 68, 90, 1)"}}>
-                    <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                        <TableHead>
-                        <TableRow>
-                            <StyledTableCell align="center">Nr testu</StyledTableCell>
-                            <StyledTableCell align="center">Typ</StyledTableCell>
-                            <StyledTableCell align="center">Data wykonania</StyledTableCell>
-                            <StyledTableCell align="center">Data wyniku</StyledTableCell>
-                            <StyledTableCell align="center">Wynik</StyledTableCell>
-                            <StyledTableCell align="center">Akcja</StyledTableCell>
-                        </TableRow>
-                        </TableHead>
-                        <TableBody>
-                        
-                            {data != null ?
-                        <Paginate pageNumberChanged={pageNumberChanged} pageNumber={pageNumber} data={data.map((test) => <Test key={test.id} data={test} onClick={onClick} />)} />
-                        : null}
+      <TableContainer
+        component={Paper}
+        sx={{
+          borderRadius: "16px",
+          boxShadow: "1px 0px 21px 4px rgba(66, 68, 90, 1)",
+        }}
+      >
+        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell align="center">Nr testu</StyledTableCell>
+              <StyledTableCell align="center">Typ</StyledTableCell>
+              <StyledTableCell align="center">Data wykonania</StyledTableCell>
+              <StyledTableCell align="center">Data wyniku</StyledTableCell>
+              <StyledTableCell align="center">Wynik</StyledTableCell>
+              <StyledTableCell align="center">Akcja</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data != null ? (
+              <Paginate
+                pageNumberChanged={pageNumberChanged}
+                pageNumber={pageNumber}
+                data={data.map((test) => (
+                  <Test key={test.id} data={test} onClick={onClick} />
+                ))}
+              />
+            ) : null}
+          </TableBody>
+        </Table>
+        <Button
+          variant="outlined"
+          size="normall"
+          sx={{ margin: "10px" }}
+          onClick={() => setButtonAddPopup(true)}
+        >
+          Dodaj nowy test
+        </Button>
+      </TableContainer>
+      <Popup
+        component={<AddTest onSubmit={handleChange} id={id} />}
+        trigger={buttonAddPopup}
+        setTrigger={setButtonAddPopup}
+      />
 
-                        </TableBody>
+      {selectedTestData != null ? (
+        <Popup
+          component={
+            <TestDetails onSubmit={handleChange} id={selectedTestData.id} />
+          }
+          trigger={buttonPopup}
+          setTrigger={setButtonPopup}
+        />
+      ) : null}
+    </Fragment>
+  );
+};
 
-                    </Table>
-                    <Button variant="outlined" size="normall" sx={{'margin':'10px'}} onClick={() => setButtonAddPopup(true)}>Dodaj nowy test</Button>
-
-                </TableContainer>
-                <Popup component={<AddTest onSubmit={handleChange} id={id} />} trigger={buttonAddPopup} setTrigger={setButtonAddPopup} />
-
-                {selectedTestData != null ?
-                    <Popup component={<TestDetails onSubmit={handleChange} id={selectedTestData.id} />} trigger={buttonPopup} setTrigger={setButtonPopup} />
-                    : null}
-
-            </Fragment>
-
-    );
-}
-
-export default Tests
-
+export default Tests;
