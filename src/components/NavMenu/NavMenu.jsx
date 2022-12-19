@@ -79,6 +79,7 @@ const NavMenu = () => {
                         <ListItemText primary="Wyszukaj pacjenta" />
                     </ListItemButton>
                 </ListItem>
+                {role === "Laborant" ? null : (
                 <ListItem disablePadding>
                     <ListItemButton component="a" href="/analysis">
                         <ListItemIcon>
@@ -87,6 +88,7 @@ const NavMenu = () => {
                         <ListItemText primary="Analiza" />
                     </ListItemButton>
                 </ListItem>
+                )}
                 <ListItem disablePadding>
                     <ListItemButton component="a" href="/help">
                         <ListItemIcon>

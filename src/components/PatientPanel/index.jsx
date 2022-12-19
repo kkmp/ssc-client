@@ -15,6 +15,7 @@ import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { Vaccines, MedicalInformation, HealthAndSafety, HeartBroken } from "@mui/icons-material"
+import getTokenData from "../GetTokenData";
 
 
 function TabPanel(props) {
@@ -56,6 +57,8 @@ const PatientPanel = () => {
   const [value, setValue] = React.useState(0);
   const [buttonPopup, setButtonPopup] = useState(false)
 
+  const [role, setRole] = useState("");
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -74,11 +77,15 @@ const PatientPanel = () => {
   }
 
   useEffect(() => {
+    const user = getTokenData();
+    if (user != null) {
+      setRole(user.role);
+    }
     handleChange1()
   }, []);
 
   return (
-    error != null ?  <Box p={3}><Errors data={error} /></Box> :
+    error != null ? <Box p={3}><Errors data={error} /></Box> :
       data != null ?
         <Fragment>
           <Container>
@@ -90,13 +97,33 @@ const PatientPanel = () => {
             <Box p={3}>
               <PatientDetails data={data} />
             </Box>
-                  <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                    <Tab icon={<Vaccines />} label="Testy" {...a11yProps(0)} />
-                    <Tab icon={<MedicalInformation />} label="Historia choroby" {...a11yProps(1)} />
-                    <Tab icon={<HealthAndSafety />} label="Leczenie" {...a11yProps(2)} />
-                    <Tab icon={<HeartBroken />} label="Powikłania" {...a11yProps(2)} />
-                    <Tab icon={<Edit />} label="Edytuj dane" onClick={() => setButtonPopup(true)} />
-                  </Tabs>
+
+            {role === "Laborant" ?
+              <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+                <Tab icon={<Vaccines />} label="Testy" {...a11yProps(0)} />
+                <Tab icon={<HealthAndSafety />} label="Leczenie" {...a11yProps(1)} />
+                <Tab icon={<Edit />} label="Edytuj dane" onClick={() => setButtonPopup(true)} />
+              </Tabs>
+              :
+              <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+                <Tab icon={<Vaccines />} label="Testy" {...a11yProps(0)} />
+                <Tab icon={<MedicalInformation />} label="Historia choroby" {...a11yProps(1)} />
+                <Tab icon={<HealthAndSafety />} label="Leczenie" {...a11yProps(2)} />
+                <Tab icon={<HeartBroken />} label="Powikłania" {...a11yProps(2)} />
+                <Tab icon={<Edit />} label="Edytuj dane" onClick={() => setButtonPopup(true)} />
+              </Tabs>}
+
+            {role === "Laborant" ?
+              <Fragment>
+                <TabPanel value={value} index={0}>
+                  <Tests id={id} />
+                </TabPanel>
+                <TabPanel value={value} index={1}>
+                  <Treatments id={id} />
+                </TabPanel>
+              </Fragment>
+              :
+              <Fragment>
                 <TabPanel value={value} index={0}>
                   <Tests id={id} />
                 </TabPanel>
@@ -109,7 +136,9 @@ const PatientPanel = () => {
                 <TabPanel value={value} index={3}>
                   <TreatmentDiseaseCourses id={id} />
                 </TabPanel>
-                <Popup component={<EditPatient onSubmit={handleChange1} />} trigger={buttonPopup} setTrigger={setButtonPopup} />
+              </Fragment>}
+
+            <Popup component={<EditPatient onSubmit={handleChange1} />} trigger={buttonPopup} setTrigger={setButtonPopup} />
           </Container>
         </Fragment> : <div className="spinner-border" role="status"></div>
 
