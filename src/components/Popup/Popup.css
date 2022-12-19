@@ -1,27 +1,26 @@
 .popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    min-height: 100vh;
-    background-color: rgba(0,0,0,0.65);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .popup-inner {
-    position: relative;
-    padding: 32px;
-    min-width: 400px;
-    max-width: 900px;
-    background-color: white;
-    border-radius: 16px;
-
+  position: relative;
+  padding: 32px;
+  min-width: 400px;
+  max-width: 900px;
+  background-color: white;
+  border-radius: 16px;
 }
 
 .popup-inner .close-btn {
-    position: absolute;
-    top: 16px;
-    right: 16px;
+  position: absolute;
+  top: 16px;
+  right: 16px;
 }

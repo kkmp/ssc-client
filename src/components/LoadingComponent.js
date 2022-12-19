@@ -1,13 +1,13 @@
-import { Fragment } from "react"
+import { Fragment } from "react";
 
 const LoadingComponent = () => {
-    return (
-        <Fragment>
-            <div className="mt-4">
-                <div className="spinner-border" role="status"></div>
-            </div>
-        </Fragment>
-    );
-}
+  return (
+    <Fragment>
+      <div className="mt-4">
+        <div className="spinner-border" role="status"></div>
+      </div>
+    </Fragment>
+  );
+};
 
-export default LoadingComponent
+export default LoadingComponent;

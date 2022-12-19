@@ -1,15 +1,6 @@
 import { Fragment } from "react";
 import { Woman, Man } from "@mui/icons-material";
-
-import {
-  Stack,
-  Avatar,
-  Box,
-  Paper,
-  Typography,
-  Button,
-} from "@mui/material";
-
+import { Stack, Avatar, Box, Paper, Typography, Button } from "@mui/material"
 import { styled } from "@mui/material/styles";
 
 const Patient = (patient) => {
@@ -31,9 +22,8 @@ const Patient = (patient) => {
 
   return (
     <Fragment>
-
       <Item>
-        <Stack direction={"row"} spacing={{ xs: 4, sm: 5, md:10}}>
+        <Stack direction={"row"} spacing={{ xs: 4, sm: 5, md: 10 }}>
           <Box>
             <Avatar sx={{ width: 56, height: 56, margin: "10px" }}>
               {" "}

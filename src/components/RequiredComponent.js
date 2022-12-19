@@ -1,12 +1,12 @@
-import { Fragment } from "react"
-import './Styles.css'
+import { Fragment } from "react";
+import "./Styles.css";
 
 const RequiredComponent = () => {
-    return (
-        <Fragment>
-            <span className="req"> *</span>
-        </Fragment>
-    );
-}
+  return (
+    <Fragment>
+      <span className="req"> *</span>
+    </Fragment>
+  );
+};
 
-export default RequiredComponent
+export default RequiredComponent;
